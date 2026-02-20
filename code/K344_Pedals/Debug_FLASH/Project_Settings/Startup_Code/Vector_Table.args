@@ -1,0 +1,19 @@
+-c
+-I../RTD/include
+-I"C:/Users/Darius-PC/Documents/GitHub/VCU_Pedals/code/K344_Pedals/generate/include"
+-I"C:/Users/Darius-PC/Documents/GitHub/VCU_Pedals/code/K344_Pedals/RTD/include"
+-I"C:/Users/Darius-PC/Documents/GitHub/VCU_Pedals/code/K344_Pedals/board"
+-I"D:/NXP/S32DS.3.6.0/S32DS/software/PlatformSDK_S32K3/RTD/BaseNXP_TS_T40D34M40I0R0/header"
+-I"D:/NXP/S32DS.3.6.0/S32DS/software/PlatformSDK_S32K3/RTD/BaseNXP_TS_T40D34M40I0R0/include"
+-I"D:/NXP/S32DS.3.6.0/S32DS/software/PlatformSDK_S32K3/RTD/Platform_TS_T40D34M40I0R0/include"
+-I"D:/NXP/S32DS.3.6.0/S32DS/software/PlatformSDK_S32K3/RTD/Platform_TS_T40D34M40I0R0/startup/include"
+-x assembler-with-cpp
+-g3
+-mcpu=cortex-m7
+-mthumb
+-mlittle-endian
+-mfloat-abi=hard
+-mfpu=fpv5-sp-d16
+-specs=nano.specs
+-specs=nosys.specs
+--sysroot="D:/NXP/S32DS.3.6.0/S32DS/build_tools/gcc_v10.2/gcc-10.2-arm32-eabi/arm-none-eabi/lib"
