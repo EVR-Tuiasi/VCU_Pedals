@@ -93,38 +93,10 @@ void TestDelay(uint32 delay)
 */
 int main(void)
 {
-    uint8 count = 0U;
 
-    /* Initialize the Mcu driver */
-#if (MCU_PRECOMPILE_SUPPORT == STD_ON)
-    Mcu_Init(NULL_PTR);
-#elif (MCU_PRECOMPILE_SUPPORT == STD_OFF)
-    Mcu_Init(&Mcu_Config);
-#endif /* (MCU_PRECOMPILE_SUPPORT == STD_ON) */
-
-    /* Initialize the clock tree and apply PLL as system clock */
-    Mcu_InitClock(McuClockSettingConfig_0);
-
-    /* Apply a mode configuration */
-    Mcu_SetMode(McuModeSettingConf_0);
-
-    /* Initialize all pins using the Port driver */
-    Port_Init(NULL_PTR);
-
-    while (count++ < 10)
-    {
-        Dio_WriteChannel(DioConf_DioChannel_Digital_Output_LED_Q172, STD_HIGH);
-        Dio_WriteChannel(DioConf_DioChannel_Digital_Output_LED_Q257, STD_HIGH);
-        TestDelay(5000000);
-
-        Dio_WriteChannel(DioConf_DioChannel_Digital_Output_LED_Q172, STD_LOW);
-        Dio_WriteChannel(DioConf_DioChannel_Digital_Output_LED_Q257, STD_LOW);
-        TestDelay(5000000);
-    }
-
-    Exit_Example(TRUE);
-
-    return (0U);
+   while(1){
+	   ;;
+   }
 }
 
 

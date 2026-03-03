@@ -29,6 +29,7 @@ extern "C"{
 
 #include "Mcu.h"
 #include "stdint.h"
+#include "Stdbool.h"
 
 /*==================================================================================================
 *                          LOCAL TYPEDEFS (STRUCTURES, UNIONS, ENUMS)
