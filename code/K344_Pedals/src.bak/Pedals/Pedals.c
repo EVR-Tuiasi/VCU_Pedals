@@ -9,7 +9,7 @@ extern "C"{
 * 3) internal and external interfaces from this unit
 ==================================================================================================*/
 
-#include "Pedals/Pedals.h"
+#include "Pedals.h"
 
 /*==================================================================================================
 *                              SOURCE FILE VERSION INFORMATION

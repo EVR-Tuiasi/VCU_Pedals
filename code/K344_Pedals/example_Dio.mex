@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding= "UTF-8" ?>
-<configuration name="S32K344" xsi:schemaLocation="http://mcuxpresso.nxp.com/XSD/mex_configuration_18 http://mcuxpresso.nxp.com/XSD/mex_configuration_18.xsd" uuid="cb0a0571-31b0-4026-b225-2a0da4ce6ac1" version="18" xmlns="http://mcuxpresso.nxp.com/XSD/mex_configuration_18" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<configuration name="S32K344" xsi:schemaLocation="http://mcuxpresso.nxp.com/XSD/mex_configuration_19 http://mcuxpresso.nxp.com/XSD/mex_configuration_19.xsd" uuid="cb0a0571-31b0-4026-b225-2a0da4ce6ac1" version="19" xmlns="http://mcuxpresso.nxp.com/XSD/mex_configuration_19" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <common>
       <processor>S32K344</processor>
       <package>S32K344_257BGA</package>
@@ -52,11 +52,13 @@
                         <pin_feature name="direction" value="INPUT/OUTPUT"/>
                      </pin_features>
                   </pin>
+                  <pin peripheral="ADC0" signal="adc0_p1" pin_num="F3" pin_signal="PTD0"/>
+                  <pin peripheral="ADC0" signal="adc0_p0" pin_num="E3" pin_signal="PTD1"/>
                </pins>
             </function>
          </functions_list>
       </pins>
-      <clocks name="Clocks" version="17.0" enabled="true" update_project_code="true">
+      <clocks name="Clocks" version="19.0" enabled="true" update_project_code="true">
          <generated_project_files>
             <file path="generate/include/Clock_Ip_Cfg.h" update_enabled="true"/>
             <file path="generate/include/Clock_Ip_Cfg_Defines.h" update_enabled="true"/>
@@ -365,6 +367,26 @@
                   <data type="Version">1.0.0</data>
                </feature>
             </dependency>
+            <dependency resourceType="SWComponent" resourceId="platform.driver.adc" description="adc is not found in the toolchain/IDE project. The project will not compile!" problem_level="2" source="Peripherals">
+               <feature name="enabled" evaluation="equal">
+                  <data type="Boolean">true</data>
+               </feature>
+            </dependency>
+            <dependency resourceType="SWComponent" resourceId="platform.driver.adc" description="An unsupported version of the adc in the toolchain/IDE project. Required: ${required_value}, actual: ${actual_value}. The project might not compile correctly." problem_level="1" source="Peripherals">
+               <feature name="version" evaluation="equivalent">
+                  <data type="Version">1.0.0</data>
+               </feature>
+            </dependency>
+            <dependency resourceType="SWComponent" resourceId="platform.driver.Platform" description="Platform is not found in the toolchain/IDE project. The project will not compile!" problem_level="2" source="Peripherals">
+               <feature name="enabled" evaluation="equal">
+                  <data type="Boolean">true</data>
+               </feature>
+            </dependency>
+            <dependency resourceType="SWComponent" resourceId="platform.driver.Platform" description="An unsupported version of the Platform in the toolchain/IDE project. Required: ${required_value}, actual: ${actual_value}. The project might not compile correctly." problem_level="1" source="Peripherals">
+               <feature name="version" evaluation="equivalent">
+                  <data type="Version">1.0.0</data>
+               </feature>
+            </dependency>
             <dependency resourceType="Tool" resourceId="Clocks" description="The Clocks tool is required by the Peripherals tool, but it is disabled." problem_level="2" source="Peripherals">
                <feature name="enabled" evaluation="equal">
                   <data>true</data>
@@ -376,17 +398,38 @@
             <file path="board/Siul2_Port_Ip_Cfg.h" update_enabled="true"/>
             <file path="board/Tspc_Port_Ip_Cfg.c" update_enabled="true"/>
             <file path="board/Tspc_Port_Ip_Cfg.h" update_enabled="true"/>
+            <file path="generate/include/Adc_Cfg.h" update_enabled="true"/>
+            <file path="generate/include/Adc_CfgDefines.h" update_enabled="true"/>
+            <file path="generate/include/Adc_Ipw_Cfg.h" update_enabled="true"/>
+            <file path="generate/include/Adc_Ipw_CfgDefines.h" update_enabled="true"/>
+            <file path="generate/include/Adc_Ipw_PBcfg.h" update_enabled="true"/>
+            <file path="generate/include/Adc_PBcfg.h" update_enabled="true"/>
+            <file path="generate/include/Adc_Sar_Ip_Cfg.h" update_enabled="true"/>
+            <file path="generate/include/Adc_Sar_Ip_CfgDefines.h" update_enabled="true"/>
+            <file path="generate/include/Adc_Sar_Ip_PBcfg.h" update_enabled="true"/>
+            <file path="generate/include/Bctu_Ip_Cfg.h" update_enabled="true"/>
+            <file path="generate/include/Bctu_Ip_CfgDefines.h" update_enabled="true"/>
+            <file path="generate/include/Bctu_Ip_PBcfg.h" update_enabled="true"/>
             <file path="generate/include/Clock_Ip_Cfg.h" update_enabled="true"/>
             <file path="generate/include/Clock_Ip_Cfg_Defines.h" update_enabled="true"/>
             <file path="generate/include/Clock_Ip_PBcfg.h" update_enabled="true"/>
             <file path="generate/include/Dio_Cfg.h" update_enabled="true"/>
             <file path="generate/include/Igf_Port_Ip_Cfg.h" update_enabled="true"/>
             <file path="generate/include/Igf_Port_Ip_PBcfg.h" update_enabled="true"/>
+            <file path="generate/include/IntCtrl_Ip_Cfg.h" update_enabled="true"/>
+            <file path="generate/include/IntCtrl_Ip_CfgDefines.h" update_enabled="true"/>
+            <file path="generate/include/Intm_Ip_Cfg.h" update_enabled="true"/>
+            <file path="generate/include/Intm_Ip_CfgDefines.h" update_enabled="true"/>
             <file path="generate/include/Mcu_Cfg.h" update_enabled="true"/>
             <file path="generate/include/Mcu_Ipw_Cfg_Defines.h" update_enabled="true"/>
             <file path="generate/include/Mcu_PBcfg.h" update_enabled="true"/>
+            <file path="generate/include/Mpu_M7_Ip_Cfg.h" update_enabled="true"/>
+            <file path="generate/include/Mpu_M7_Ip_Cfg_Defines.h" update_enabled="true"/>
             <file path="generate/include/OsIf_ArchCfg.h" update_enabled="true"/>
             <file path="generate/include/OsIf_Cfg.h" update_enabled="true"/>
+            <file path="generate/include/Platform_Cfg.h" update_enabled="true"/>
+            <file path="generate/include/Platform_CfgDefines.h" update_enabled="true"/>
+            <file path="generate/include/Platform_Ipw_Cfg.h" update_enabled="true"/>
             <file path="generate/include/Port_Cfg.h" update_enabled="true"/>
             <file path="generate/include/Port_PBcfg.h" update_enabled="true"/>
             <file path="generate/include/Power_Ip_Cfg.h" update_enabled="true"/>
@@ -395,25 +438,40 @@
             <file path="generate/include/Ram_Ip_Cfg.h" update_enabled="true"/>
             <file path="generate/include/Ram_Ip_Cfg_Defines.h" update_enabled="true"/>
             <file path="generate/include/Ram_Ip_PBcfg.h" update_enabled="true"/>
+            <file path="generate/include/Sdadc_Ip_Cfg.h" update_enabled="true"/>
+            <file path="generate/include/Sdadc_Ip_CfgDefines.h" update_enabled="true"/>
+            <file path="generate/include/Sdadc_Ip_PBcfg.h" update_enabled="true"/>
             <file path="generate/include/Siul2_Dio_Ip_Cfg.h" update_enabled="true"/>
             <file path="generate/include/Siul2_Port_Ip_Defines.h" update_enabled="true"/>
             <file path="generate/include/Siul2_Port_Ip_PBcfg.h" update_enabled="true"/>
             <file path="generate/include/Soc_Ips.h" update_enabled="true"/>
+            <file path="generate/include/System_Ip_Cfg.h" update_enabled="true"/>
+            <file path="generate/include/System_Ip_CfgDefines.h" update_enabled="true"/>
             <file path="generate/include/Tspc_Port_Ip_PBcfg.h" update_enabled="true"/>
             <file path="generate/include/modules.h" update_enabled="true"/>
+            <file path="generate/src/Adc_Cfg.c" update_enabled="true"/>
+            <file path="generate/src/Adc_Ipw_PBcfg.c" update_enabled="true"/>
+            <file path="generate/src/Adc_PBcfg.c" update_enabled="true"/>
+            <file path="generate/src/Adc_Sar_Ip_PBcfg.c" update_enabled="true"/>
+            <file path="generate/src/Bctu_Ip_PBcfg.c" update_enabled="true"/>
             <file path="generate/src/Clock_Ip_Cfg.c" update_enabled="true"/>
             <file path="generate/src/Clock_Ip_PBcfg.c" update_enabled="true"/>
             <file path="generate/src/Dio_Cfg.c" update_enabled="true"/>
             <file path="generate/src/Igf_Port_Ip_PBcfg.c" update_enabled="true"/>
+            <file path="generate/src/IntCtrl_Ip_Cfg.c" update_enabled="true"/>
             <file path="generate/src/Mcu_Cfg.c" update_enabled="true"/>
             <file path="generate/src/Mcu_PBcfg.c" update_enabled="true"/>
+            <file path="generate/src/Mpu_M7_Ip_Cfg.c" update_enabled="true"/>
             <file path="generate/src/OsIf_Cfg.c" update_enabled="true"/>
+            <file path="generate/src/Platform_Cfg.c" update_enabled="true"/>
+            <file path="generate/src/Platform_Ipw_Cfg.c" update_enabled="true"/>
             <file path="generate/src/Port_Cfg.c" update_enabled="true"/>
             <file path="generate/src/Port_PBcfg.c" update_enabled="true"/>
             <file path="generate/src/Power_Ip_Cfg.c" update_enabled="true"/>
             <file path="generate/src/Power_Ip_PBcfg.c" update_enabled="true"/>
             <file path="generate/src/Ram_Ip_Cfg.c" update_enabled="true"/>
             <file path="generate/src/Ram_Ip_PBcfg.c" update_enabled="true"/>
+            <file path="generate/src/Sdadc_Ip_PBcfg.c" update_enabled="true"/>
             <file path="generate/src/Siul2_Port_Ip_PBcfg.c" update_enabled="true"/>
             <file path="generate/src/Tspc_Port_Ip_PBcfg.c" update_enabled="true"/>
          </generated_project_files>
@@ -1677,7 +1735,7 @@
                      <config_set name="Port">
                         <setting name="Name" value="Port"/>
                         <struct name="ConfigTimeSupport">
-                           <setting name="POST_BUILD_VARIANT_USED" value="false"/>
+                           <setting name="POST_BUILD_VARIANT_USED" value="true"/>
                            <setting name="IMPLEMENTATION_CONFIG_VARIANT" value="VARIANT-PRE-COMPILE"/>
                         </struct>
                         <struct name="PortGeneral">
@@ -1794,6 +1852,307 @@
                            <setting name="VendorApiInfix" value=""/>
                            <setting name="VendorId" value="43"/>
                         </struct>
+                     </config_set>
+                  </instance>
+                  <instance name="Adc" uuid="04fbe88b-9afc-4842-8968-5f96e708978d" type="Adc" type_id="Adc" mode="autosar" enabled="true" comment="" custom_name_enabled="false" editing_lock="false">
+                     <config_set name="Adc">
+                        <setting name="Name" value="Adc"/>
+                        <struct name="ConfigTimeSupport">
+                           <setting name="POST_BUILD_VARIANT_USED" value="true"/>
+                           <setting name="IMPLEMENTATION_CONFIG_VARIANT" value="VARIANT-PRE-COMPILE"/>
+                        </struct>
+                        <struct name="AdcConfigSet">
+                           <setting name="Name" value="AdcConfigSet"/>
+                           <array name="AdcHwUnit">
+                              <struct name="0">
+                                 <setting name="Name" value="AdcHwUnit_0"/>
+                                 <setting name="AdcHwUnitId" value="ADC0"/>
+                                 <setting name="AdcLogicalUnitId" value="0"/>
+                                 <setting name="AdcTransferType" value="ADC_INTERRUPT"/>
+                                 <array name="AdcDmaChannelId"/>
+                                 <array name="AdcCountingDmaChannelId"/>
+                                 <array name="AdcClockSource"/>
+                                 <array name="AdcPrescale"/>
+                                 <setting name="AdcAltPrescale" value="2"/>
+                                 <setting name="AdcCalibrationPrescale" value="2"/>
+                                 <setting name="AdcHighSpeedEnable" value="false"/>
+                                 <setting name="AdcAltHighSpeedEnable" value="false"/>
+                                 <setting name="AdcPowerDownDelay" value="0"/>
+                                 <setting name="AdcAltPowerDownDelay" value="0"/>
+                                 <setting name="AdcMuxDelay" value="0"/>
+                                 <setting name="AdcAutoClockOff" value="false"/>
+                                 <setting name="AdcBypassSampling" value="false"/>
+                                 <setting name="AdcHwUnitOverwriteEn" value="false"/>
+                                 <setting name="AdcPresamplingInternalSignal0" value="VREFL"/>
+                                 <setting name="AdcPresamplingInternalSignal1" value="VREFL"/>
+                                 <setting name="AdcPresamplingInternalSignal2" value="VREFL"/>
+                                 <setting name="AdcHwUnitUsrOffset" value="0"/>
+                                 <setting name="AdcHwUnitUsrGain" value="0"/>
+                                 <setting name="AdcHwUnitResolution" value="RESOLUTION_14"/>
+                                 <setting name="AdcHwUnitBypassResolution" value="false"/>
+                                 <setting name="AdcHwUnitDmaClearSource" value="DMA_REQ_CLEAR_ON_ACK"/>
+                                 <setting name="AdcSarHwUnitVref" value="53"/>
+                                 <struct name="SdAdcHwUnitSpecificConfiguration">
+                                    <setting name="Name" value="SdAdcHwUnitSpecificConfiguration_0"/>
+                                    <setting name="SdadcDecimaRate" value="DECIMATION_RATE_120"/>
+                                    <setting name="SdadcOutputSetDelay" value="0"/>
+                                    <setting name="SdadcFifoThreshold" value="0"/>
+                                    <setting name="SdadcCalibSkipped" value="16"/>
+                                    <setting name="SdadcCalibAverage" value="16"/>
+                                    <array name="SdAdcDspssSpecificConfiguration"/>
+                                 </struct>
+                                 <array name="AdcSelfTestThresholdConfiguration"/>
+                                 <array name="AdcNormalConvTimings"/>
+                                 <array name="AdcAlternateConvTimings"/>
+                                 <array name="AdcChannel">
+                                    <struct name="0">
+                                       <setting name="Name" value="AdcChannel_0"/>
+                                       <setting name="AdcLogicalChannelId" value="0"/>
+                                       <setting name="AdcChannelName" value="P0_ChanNum0"/>
+                                       <setting name="AdcChannelId" value="0"/>
+                                       <array name="AdcChannelConvTime"/>
+                                       <array name="AdcChannelLimitCheck"/>
+                                       <array name="AdcChannelHighLimit"/>
+                                       <array name="AdcChannelLowLimit"/>
+                                       <array name="AdcChannelRangeSelect"/>
+                                       <array name="AdcChannelRefVoltsrcHigh"/>
+                                       <array name="AdcChannelRefVoltsrcLow"/>
+                                       <array name="AdcChannelResolution"/>
+                                       <array name="AdcChannelSampTime"/>
+                                       <setting name="AdcEnablePresampling" value="false"/>
+                                       <setting name="AdcEnableThresholds" value="false"/>
+                                       <array name="AdcThresholdRegister"/>
+                                       <setting name="AdcWdogNotification" value="NULL_PTR"/>
+                                    </struct>
+                                 </array>
+                                 <array name="AdcGroup">
+                                    <struct name="0">
+                                       <setting name="Name" value="AdcGroup_0"/>
+                                       <setting name="AdcGroupAccessMode" value="ADC_ACCESS_MODE_SINGLE"/>
+                                       <setting name="AdcGroupConversionMode" value="ADC_CONV_MODE_ONESHOT"/>
+                                       <setting name="AdcGroupConversionType" value="ADC_CONV_TYPE_NORMAL"/>
+                                       <setting name="AdcGroupId" value="0"/>
+                                       <array name="AdcGroupPriority"/>
+                                       <array name="AdcGroupReplacement"/>
+                                       <setting name="AdcGroupTriggSrc" value="ADC_TRIGG_SRC_SW"/>
+                                       <setting name="AdcGroupHwTriggerSource" value="/Adc/Adc/AdcConfigSet/AdcHwTrigger_0"/>
+                                       <array name="AdcHwTrigSignal"/>
+                                       <array name="AdcHwTrigTimer"/>
+                                       <array name="AdcNotification"/>
+                                       <setting name="AdcExtraNotification" value="NULL_PTR"/>
+                                       <setting name="AdcStreamingBufferMode" value="ADC_STREAM_BUFFER_LINEAR"/>
+                                       <setting name="AdcEnableOptimizeDmaStreamingGroups" value="false"/>
+                                       <setting name="AdcEnableHalfInterrupt" value="false"/>
+                                       <setting name="AdcStreamingNumSamples" value="1"/>
+                                       <setting name="AdcStreamResultGroup" value="false"/>
+                                       <setting name="AdcEnableChDisableChGroup" value="false"/>
+                                       <setting name="AdcWithoutInterrupts" value="false"/>
+                                       <setting name="AdcWithoutDma" value="false"/>
+                                       <setting name="AdcExtDMAChanEnable" value="false"/>
+                                       <struct name="AdcGroupConversionConfiguration">
+                                          <setting name="Name" value="AdcGroupConversionConfiguration"/>
+                                          <setting name="AdcGroupHardwareAverageEnable" value="false"/>
+                                          <setting name="AdcGroupHardwareAverageSelect" value="SAMPLES_4"/>
+                                          <setting name="AdcSamplingDuration0" value="20"/>
+                                          <setting name="AdcSamplingDuration1" value="20"/>
+                                          <setting name="AdcSamplingDuration2" value="22"/>
+                                       </struct>
+                                       <struct name="AdcAlternateGroupConvTimings">
+                                          <setting name="Name" value="AdcAlternateGroupConvTimings"/>
+                                          <setting name="AdcGroupAltHardwareAverageEnable" value="false"/>
+                                          <setting name="AdcGroupAltHardwareAverageSelect" value="SAMPLES_4"/>
+                                          <setting name="AdcAltGroupSamplingDuration0" value="22"/>
+                                          <setting name="AdcAltGroupSamplingDuration1" value="22"/>
+                                          <setting name="AdcAltGroupSamplingDuration2" value="22"/>
+                                       </struct>
+                                       <array name="AdcGroupDefinition">
+                                          <setting name="0" value="/Adc/Adc/AdcConfigSet/AdcHwUnit_0/AdcChannel_0"/>
+                                       </array>
+                                       <array name="AdcGroupEcucPartitionRef"/>
+                                    </struct>
+                                 </array>
+                                 <array name="AdcThresholdControl"/>
+                                 <array name="AdcHwUnitEcucPartitionRef"/>
+                              </struct>
+                           </array>
+                           <array name="AdcHwTrigger">
+                              <struct name="0">
+                                 <setting name="Name" value="AdcHwTrigger_0"/>
+                                 <setting name="AdcHwTrigSrc" value="BCTU_EMIOS_0_0"/>
+                              </struct>
+                           </array>
+                           <array name="BctuHwUnit"/>
+                        </struct>
+                        <struct name="AdcGeneral">
+                           <setting name="Name" value="AdcGeneral"/>
+                           <setting name="AdcDeInitApi" value="true"/>
+                           <setting name="AdcDevErrorDetect" value="false"/>
+                           <setting name="AdcEnableLimitCheck" value="true"/>
+                           <setting name="AdcEnableQueuing" value="true"/>
+                           <setting name="AdcPriorityQueueMaxDepth" value="1"/>
+                           <setting name="AdcEnableStartStopGroupApi" value="true"/>
+                           <setting name="AdcGrpNotifCapability" value="true"/>
+                           <setting name="AdcHwTriggerApi" value="false"/>
+                           <setting name="AdcPriorityImplementation" value="ADC_PRIORITY_NONE"/>
+                           <setting name="AdcReadGroupApi" value="true"/>
+                           <setting name="AdcResultAlignment" value="ADC_ALIGN_RIGHT"/>
+                           <setting name="AdcVersionInfoApi" value="true"/>
+                           <array name="AdcLowPowerStatesSupport">
+                              <setting name="0" value="false"/>
+                           </array>
+                           <array name="AdcPowerStateAsynchTransitionMode"/>
+                           <array name="AdcEcucPartitionRef"/>
+                           <array name="AdcKernelEcucPartitionRef"/>
+                           <array name="AdcPowerStateConfig"/>
+                        </struct>
+                        <array name="AdcInterrupt">
+                           <struct name="0">
+                              <setting name="Name" value="AdcInterrupt_0"/>
+                              <setting name="AdcInterruptSource" value="ADC0_EOC"/>
+                              <setting name="AdcInterruptEnable" value="true"/>
+                           </struct>
+                        </array>
+                        <struct name="AdcPublishedInformation">
+                           <setting name="Name" value="AdcPublishedInformation"/>
+                           <setting name="AdcChannelValueSigned" value="false"/>
+                           <setting name="AdcGroupFirstChannelFixed" value="false"/>
+                           <setting name="AdcMaxChannelResolution" value="14"/>
+                        </struct>
+                        <struct name="CommonPublishedInformation">
+                           <setting name="Name" value="CommonPublishedInformation"/>
+                           <setting name="ArReleaseMajorVersion" value="4"/>
+                           <setting name="ArReleaseMinorVersion" value="7"/>
+                           <setting name="ArReleaseRevisionVersion" value="0"/>
+                           <setting name="ModuleId" value="123"/>
+                           <setting name="SwMajorVersion" value="4"/>
+                           <setting name="SwMinorVersion" value="0"/>
+                           <setting name="SwPatchVersion" value="0"/>
+                           <setting name="VendorApiInfix" value=""/>
+                           <setting name="VendorId" value="43"/>
+                        </struct>
+                        <struct name="AutosarExt">
+                           <setting name="Name" value="AutosarExt"/>
+                           <setting name="AdcTimeoutMethod" value="OSIF_COUNTER_DUMMY"/>
+                           <setting name="AdcTimeoutVal" value="100000"/>
+                           <setting name="AdcSarIpDevErrorDetect" value="false"/>
+                           <setting name="SdadcIpDevErrorDetect" value="false"/>
+                           <setting name="SdadcDspssEnable" value="false"/>
+                           <setting name="SdadcDspssErrorNotifCapability" value="false"/>
+                           <setting name="SdAdcDspssSchedMode" value="DSPSS_SAMPLE_THRESHOLD_MODE"/>
+                           <array name="SdadcDspssInitDmaChannelId"/>
+                           <setting name="BctuIpDevErrorDetect" value="false"/>
+                           <setting name="AdcMulticoreSupport" value="false"/>
+                           <setting name="AdcEnableGroupDependentChannelNames" value="false"/>
+                           <setting name="AdcBypassAbortChainCheck" value="false"/>
+                           <setting name="AdcConvTimeOnce" value="false"/>
+                           <setting name="AdcOptimizeOneShotHwTriggerConversions" value="false"/>
+                           <setting name="AdcOptimizeDmaStreamingGroups" value="false"/>
+                           <setting name="AdcPreSamplingOnce" value="true"/>
+                           <setting name="AdcEnableInitialNotification" value="false"/>
+                           <setting name="AdcEnableDmaTransferMode" value="false"/>
+                           <setting name="AdcUseSoftwareInjectedGroups" value="false"/>
+                           <setting name="AdcUseHardwareNormalGroups" value="false"/>
+                           <setting name="AdcEnableUserModeSupport" value="false"/>
+                           <setting name="AdcSetHwUnitPowerModeApi" value="false"/>
+                           <setting name="AdcEnableChDisableChApi" value="false"/>
+                           <setting name="AdcGetInjectedConvStatusApi" value="false"/>
+                           <setting name="AdcEnableThresholdConfigurationApi" value="false"/>
+                           <setting name="AdcEnableCtuTrigAutosarExtApi" value="false"/>
+                           <setting name="AdcCtuHardwareTriggerOptimization" value="false"/>
+                           <setting name="AdcEnableCtuControlModeApi" value="false"/>
+                           <setting name="CtuEnableDmaTransferMode" value="false"/>
+                           <setting name="AdcEnableWatchdogApi" value="false"/>
+                           <setting name="AdcEnableSetChannel" value="false"/>
+                           <setting name="AdcEnableDualClockMode" value="false"/>
+                           <setting name="AdcEnableCalibration" value="false"/>
+                           <setting name="AdcEnableApplyCalibration" value="false"/>
+                           <setting name="AdcEnableSelfTest" value="false"/>
+                           <setting name="AdcEnableReadRawDataApi" value="false"/>
+                           <setting name="AdcEnableGroupStreamingResultReorder" value="false"/>
+                           <setting name="AdcSarEnableTempsenseApi" value="false"/>
+                           <setting name="AdcSarPowerOnTempSense" value="false"/>
+                           <setting name="AdcSarTempSenseVsupply" value="53"/>
+                        </struct>
+                     </config_set>
+                  </instance>
+                  <instance name="Platform" uuid="8a01caab-5af9-4993-9c0c-6d0eda73cdbf" type="Platform" type_id="Platform" mode="autosar" enabled="true" comment="" custom_name_enabled="false" editing_lock="false">
+                     <config_set name="Platform">
+                        <setting name="Name" value="Platform"/>
+                        <struct name="ConfigTimeSupport">
+                           <setting name="POST_BUILD_VARIANT_USED" value="false"/>
+                           <setting name="IMPLEMENTATION_CONFIG_VARIANT" value="VARIANT-PRE-COMPILE"/>
+                        </struct>
+                        <struct name="GeneralConfiguration">
+                           <setting name="Name" value="GeneralConfiguration"/>
+                           <setting name="PlatformDevErrorDetect" value="true"/>
+                           <setting name="PlatformIntmConfigurable" value="false"/>
+                           <setting name="PlatformMcmConfigurable" value="false"/>
+                           <setting name="PlatformMpuM7Configurable" value="true"/>
+                           <setting name="PlatformIpAPIsAvailable" value="false"/>
+                           <setting name="PlatformEnableUserModeSupport" value="false"/>
+                           <setting name="PlatformMulticoreSupport" value="false"/>
+                           <array name="PlatformEcucPartitionRef"/>
+                        </struct>
+                        <struct name="CommonPublishedInformation">
+                           <setting name="Name" value="CommonPublishedInformation"/>
+                           <setting name="ArReleaseMajorVersion" value="4"/>
+                           <setting name="ArReleaseMinorVersion" value="7"/>
+                           <setting name="ArReleaseRevisionVersion" value="0"/>
+                           <setting name="ModuleId" value="255"/>
+                           <setting name="SwMajorVersion" value="4"/>
+                           <setting name="SwMinorVersion" value="0"/>
+                           <setting name="SwPatchVersion" value="0"/>
+                           <array name="VendorApiInfix"/>
+                           <setting name="VendorId" value="43"/>
+                        </struct>
+                        <array name="McmConfig"/>
+                        <struct name="MPU_M7_Configuration">
+                           <setting name="Name" value="MPU_M7_Configuration"/>
+                           <array name="MPU_M7_ModuleConfig">
+                              <struct name="0">
+                                 <setting name="Name" value="MPU_M7_ModuleConfig_0"/>
+                                 <setting name="DefaultMapEnable" value="false"/>
+                                 <setting name="RunInHFNMIEnable" value="false"/>
+                                 <setting name="MemManageInterruptEnable" value="false"/>
+                                 <setting name="PhysicalCoreID" value="Cortex_M7_Core0"/>
+                                 <array name="Mpu_M7_EcucPartitionRef"/>
+                                 <array name="RegionConfig">
+                                    <struct name="0">
+                                       <setting name="Name" value="RegionConfig_0"/>
+                                       <setting name="RegionNumber" value="0"/>
+                                       <setting name="StartAddress" value="0"/>
+                                       <setting name="EndAddress" value="4294967295"/>
+                                       <setting name="MemoryType" value="MPU_M7_MEM_STRONG_ORDER"/>
+                                       <setting name="AccessRights" value="MPU_M7_PRIV_RW_UNPRIV_RW"/>
+                                       <setting name="OuterCachePolicy" value="MPU_M7_CACHE_POLICY_NO_CACHE"/>
+                                       <setting name="InnerCachePolicy" value="MPU_M7_CACHE_POLICY_NO_CACHE"/>
+                                       <setting name="SubregionMask" value="0"/>
+                                       <setting name="Shareable" value="false"/>
+                                    </struct>
+                                 </array>
+                              </struct>
+                           </array>
+                        </struct>
+                        <struct name="IntmConfig">
+                           <setting name="Name" value="IntmConfig"/>
+                           <array name="IntmGenericSettings"/>
+                           <array name="IntmChannel"/>
+                        </struct>
+                        <array name="IntCtrlConfig">
+                           <struct name="0">
+                              <setting name="Name" value="IntCtrlConfig_0"/>
+                              <array name="PlatformIsrConfig">
+                                 <struct name="0">
+                                    <setting name="Name" value="PlatformIsrConfig_0"/>
+                                    <setting name="IsrName" value="ADC0_IRQn"/>
+                                    <setting name="IsrEnabled" value="true"/>
+                                    <setting name="IsrPriority" value="0"/>
+                                    <setting name="IsrHandler" value="Adc_Sar_0_Isr"/>
+                                 </struct>
+                              </array>
+                              <array name="PlatformNvicEcucPartitionRef"/>
+                           </struct>
+                        </array>
                      </config_set>
                   </instance>
                </instances>
