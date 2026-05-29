@@ -71,6 +71,7 @@
 /* Declaration of the configuration structure for Interrupt Controller (core related) */
 extern const IntCtrl_Ip_CtrlConfigType intCtrlConfig;
 /* Declaration of the ISR Handlers */
+extern void Adc_0_Isr(void);
 extern void Adc_1_Isr(void);
 
 #define PLATFORM_STOP_SEC_CONFIG_DATA_UNSPECIFIED

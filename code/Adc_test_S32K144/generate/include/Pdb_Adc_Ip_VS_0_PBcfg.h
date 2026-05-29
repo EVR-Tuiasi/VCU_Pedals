@@ -103,6 +103,11 @@ extern "C"{
 */
 extern const Pdb_Adc_Ip_ConfigType PdbAdcIpConfig_0_VS_0;
 
+/**
+* @brief          PDB Ip Config for Hardware Unit ADC0 for configuration variant _VS_0.
+*/
+extern const Pdb_Adc_Ip_ConfigType PdbAdcIpConfig_1_VS_0;
+
 
 #define ADC_STOP_SEC_CONFIG_DATA_UNSPECIFIED
 #include "Adc_MemMap.h"

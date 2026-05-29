@@ -252,6 +252,8 @@ extern "C"{
 * @brief IRQ definition
 */
 
+#define ADC_UNIT_0_ISR_USED
+
 #define ADC_UNIT_1_ISR_USED
 
 /**
@@ -259,6 +261,8 @@ extern "C"{
 */
 
 #define ADC_UNIT_1_END_CONVERSION_NOTIF_USED
+
+#define ADC_UNIT_0_END_CONVERSION_NOTIF_USED
 
 /**
 * @brief           max queue depth configured across all configset.
@@ -268,7 +272,7 @@ extern "C"{
 /**
 * @brief           max number of groups configured across all configset.
 */
-#define ADC_MAX_GROUPS                      (1U)
+#define ADC_MAX_GROUPS                      (2U)
 
 /**
 * @brief           Invalid Hardware group ID to determine there is no ongoing hardware group
@@ -279,7 +283,7 @@ extern "C"{
 /**
 * @brief           Maximum number of channels across all hardware units.
 */
-#define ADC_MAX_CHANNEL_PER_HW_UNIT         (2U)
+#define ADC_MAX_CHANNEL_PER_HW_UNIT         (3U)
 
 #endif /* ADC_DMA_SUPPORTED */
 
@@ -353,7 +357,8 @@ extern "C"{
 * @details         Values generated are the ADC Logical Unit ID selected from configurator.
 *                  These defines are recommended to be used with any ADC driver API that takes as input parameter Adc Unit.
 */
-#define AdcHwUnit_0                               (0U)
+#define AdcHwUnit_1                               (0U)
+#define AdcHwUnit_0                               (1U)
 
 /**
 * @brief          Adc channel id.
@@ -378,6 +383,9 @@ extern "C"{
 */
 #define ACCEL_1                       (0x0U)
 #define ACCEL_2                       (0x1U)
+#define PRESSURE                       (0x2U)
+#define BRAKE1                       (0x1000U)
+#define BRAKE2                       (0x1001U)
 
 /**
 * @brief          Definitions used for extracting the ADC Logical Unit Id and logical id of channels in each unit from equivalent channel symbolic name
@@ -390,20 +398,25 @@ extern "C"{
 /**
 * @brief           Autosar Extension symbolic names of channels per groups, on all HW units, with value set to channel index in the group.
 */
-#define AdcGroupSoftwareOneShot_ACCEL_1                   (0U)
-#define AdcGroupSoftwareOneShot_ACCEL_2                   (1U)
+#define AdcGroupSoftwareOneShot1_ACCEL_1                   (0U)
+#define AdcGroupSoftwareOneShot1_ACCEL_2                   (1U)
+#define AdcGroupSoftwareOneShot1_PRESSURE                   (2U)
+#define AdcGroupSoftwareOneShot0_BRAKE1                   (0U)
+#define AdcGroupSoftwareOneShot0_BRAKE2                   (1U)
 
 /**
 * @brief           Symbolic names of groups.
 */
 
-#define AdcGroupSoftwareOneShot                                (0U)
+#define AdcGroupSoftwareOneShot1                                (0U)
+#define AdcGroupSoftwareOneShot0                                (1U)
 
 /**
 * @brief           Symbolic names of groups - ecuc 2108 compliant.
 */
 
-#define AdcConf_AdcGroup_AdcGroupSoftwareOneShot               (0U)
+#define AdcConf_AdcGroup_AdcGroupSoftwareOneShot1               (0U)
+#define AdcConf_AdcGroup_AdcGroupSoftwareOneShot0               (1U)
 
 /**
 * @brief          ADC Global Validation.

@@ -13,14 +13,22 @@ C_SRCS += \
 ../generate/src/CDD_Rm_Cfg.c \
 ../generate/src/CDD_Rm_Ipw_VS_0_PBcfg.c \
 ../generate/src/CDD_Rm_VS_0_PBcfg.c \
+../generate/src/CDD_Uart_VS_0_PBcfg.c \
+../generate/src/CanIf_Cfg.c \
+../generate/src/CanIf_VS_0_PBcfg.c \
+../generate/src/Can_43_FLEXCAN_Ipw_VS_0_PBcfg.c \
+../generate/src/Can_43_FLEXCAN_VS_0_PBcfg.c \
 ../generate/src/Clock_Ip_Cfg.c \
 ../generate/src/Clock_Ip_VS_0_PBcfg.c \
 ../generate/src/Dio_Cfg.c \
 ../generate/src/Dma_Ip_Cfg.c \
 ../generate/src/Dma_Ip_VS_0_PBcfg.c \
 ../generate/src/Dma_Mux_Ip_VS_0_PBcfg.c \
+../generate/src/FlexCAN_Ip_VS_0_PBcfg.c \
 ../generate/src/Flexio_Mcl_Ip_VS_0_PBcfg.c \
+../generate/src/Flexio_Uart_Ip_VS_0_PBcfg.c \
 ../generate/src/IntCtrl_Ip_Cfg.c \
+../generate/src/Lpuart_Uart_Ip_VS_0_PBcfg.c \
 ../generate/src/Mcu_Cfg.c \
 ../generate/src/Mcu_VS_0_PBcfg.c \
 ../generate/src/Mpu_Ip_Cfg.c \
@@ -36,7 +44,8 @@ C_SRCS += \
 ../generate/src/Ram_Ip_Cfg.c \
 ../generate/src/Ram_Ip_VS_0_PBcfg.c \
 ../generate/src/Trgmux_Ip_Cfg.c \
-../generate/src/Trgmux_Ip_VS_0_PBcfg.c 
+../generate/src/Trgmux_Ip_VS_0_PBcfg.c \
+../generate/src/Uart_Ipw_VS_0_PBcfg.c 
 
 OBJS += \
 ./generate/src/Adc_Cfg.o \
@@ -48,14 +57,22 @@ OBJS += \
 ./generate/src/CDD_Rm_Cfg.o \
 ./generate/src/CDD_Rm_Ipw_VS_0_PBcfg.o \
 ./generate/src/CDD_Rm_VS_0_PBcfg.o \
+./generate/src/CDD_Uart_VS_0_PBcfg.o \
+./generate/src/CanIf_Cfg.o \
+./generate/src/CanIf_VS_0_PBcfg.o \
+./generate/src/Can_43_FLEXCAN_Ipw_VS_0_PBcfg.o \
+./generate/src/Can_43_FLEXCAN_VS_0_PBcfg.o \
 ./generate/src/Clock_Ip_Cfg.o \
 ./generate/src/Clock_Ip_VS_0_PBcfg.o \
 ./generate/src/Dio_Cfg.o \
 ./generate/src/Dma_Ip_Cfg.o \
 ./generate/src/Dma_Ip_VS_0_PBcfg.o \
 ./generate/src/Dma_Mux_Ip_VS_0_PBcfg.o \
+./generate/src/FlexCAN_Ip_VS_0_PBcfg.o \
 ./generate/src/Flexio_Mcl_Ip_VS_0_PBcfg.o \
+./generate/src/Flexio_Uart_Ip_VS_0_PBcfg.o \
 ./generate/src/IntCtrl_Ip_Cfg.o \
+./generate/src/Lpuart_Uart_Ip_VS_0_PBcfg.o \
 ./generate/src/Mcu_Cfg.o \
 ./generate/src/Mcu_VS_0_PBcfg.o \
 ./generate/src/Mpu_Ip_Cfg.o \
@@ -71,7 +88,8 @@ OBJS += \
 ./generate/src/Ram_Ip_Cfg.o \
 ./generate/src/Ram_Ip_VS_0_PBcfg.o \
 ./generate/src/Trgmux_Ip_Cfg.o \
-./generate/src/Trgmux_Ip_VS_0_PBcfg.o 
+./generate/src/Trgmux_Ip_VS_0_PBcfg.o \
+./generate/src/Uart_Ipw_VS_0_PBcfg.o 
 
 C_DEPS += \
 ./generate/src/Adc_Cfg.d \
@@ -83,14 +101,22 @@ C_DEPS += \
 ./generate/src/CDD_Rm_Cfg.d \
 ./generate/src/CDD_Rm_Ipw_VS_0_PBcfg.d \
 ./generate/src/CDD_Rm_VS_0_PBcfg.d \
+./generate/src/CDD_Uart_VS_0_PBcfg.d \
+./generate/src/CanIf_Cfg.d \
+./generate/src/CanIf_VS_0_PBcfg.d \
+./generate/src/Can_43_FLEXCAN_Ipw_VS_0_PBcfg.d \
+./generate/src/Can_43_FLEXCAN_VS_0_PBcfg.d \
 ./generate/src/Clock_Ip_Cfg.d \
 ./generate/src/Clock_Ip_VS_0_PBcfg.d \
 ./generate/src/Dio_Cfg.d \
 ./generate/src/Dma_Ip_Cfg.d \
 ./generate/src/Dma_Ip_VS_0_PBcfg.d \
 ./generate/src/Dma_Mux_Ip_VS_0_PBcfg.d \
+./generate/src/FlexCAN_Ip_VS_0_PBcfg.d \
 ./generate/src/Flexio_Mcl_Ip_VS_0_PBcfg.d \
+./generate/src/Flexio_Uart_Ip_VS_0_PBcfg.d \
 ./generate/src/IntCtrl_Ip_Cfg.d \
+./generate/src/Lpuart_Uart_Ip_VS_0_PBcfg.d \
 ./generate/src/Mcu_Cfg.d \
 ./generate/src/Mcu_VS_0_PBcfg.d \
 ./generate/src/Mpu_Ip_Cfg.d \
@@ -106,7 +132,8 @@ C_DEPS += \
 ./generate/src/Ram_Ip_Cfg.d \
 ./generate/src/Ram_Ip_VS_0_PBcfg.d \
 ./generate/src/Trgmux_Ip_Cfg.d \
-./generate/src/Trgmux_Ip_VS_0_PBcfg.d 
+./generate/src/Trgmux_Ip_VS_0_PBcfg.d \
+./generate/src/Uart_Ipw_VS_0_PBcfg.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

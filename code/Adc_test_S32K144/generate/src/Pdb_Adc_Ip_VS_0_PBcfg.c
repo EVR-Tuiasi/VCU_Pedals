@@ -125,6 +125,29 @@ const Pdb_Adc_Ip_ConfigType PdbAdcIpConfig_0_VS_0 =
     NULL_PTR /* SeqErrNotification */
 };
 
+/**
+* @brief          PDB Ip Config for Hardware Unit ADC0 for configuration variant VS_0.
+*/
+const Pdb_Adc_Ip_ConfigType PdbAdcIpConfig_1_VS_0 =
+{
+    PDB_ADC_IP_LOAD_VAL_IMMEDIATELY, /* LoadValueMode */
+    (Pdb_Adc_Ip_ClkPrescalerDivType) 0U, /* PrescalerDiv */
+    (Pdb_Adc_Ip_ClkPrescalerMultFactType) 0U, /* ClkPreMultFactor */
+    PDB_ADC_IP_SOFTWARE_TRIGGER, /* TriggerSource */
+    (boolean)FALSE, /* ContinuousModeEnable */
+    (boolean)FALSE, /* DmaEnable */
+    65535U, /* ModValue */
+#if  (STD_ON == FEATURE_PDB_HAS_INSTANCE_BACKTOBACK)
+    (boolean)FALSE, /* InstanceBackToBackEnable */
+#endif /* (STD_ON == FEATURE_PDB_HAS_INSTANCE_BACKTOBACK) */
+#if  (STD_ON == FEATURE_PDB_HAS_INTERCHANNEL_BACKTOBACK)
+    (boolean)FALSE, /* InterChannelBackToBackEnable */
+#endif /* (STD_ON == FEATURE_PDB_HAS_INTERCHANNEL_BACKTOBACK) */
+    0u, /* NumChans */
+    NULL_PTR, /* ChanConfigs */
+    NULL_PTR /* SeqErrNotification */
+};
+
 
 #define ADC_STOP_SEC_CONFIG_DATA_UNSPECIFIED
 #include "Adc_MemMap.h"

@@ -90,6 +90,7 @@ extern "C"{
 #include "Adc_MemMap.h"
 
 void Adc_Ipw_Adc1EndConversionNotification(const uint8 ControlChanIdx);
+void Adc_Ipw_Adc0EndConversionNotification(const uint8 ControlChanIdx);
 
 #define ADC_STOP_SEC_CODE
 #include "Adc_MemMap.h"
@@ -101,6 +102,11 @@ void Adc_Ipw_Adc1EndConversionNotification(const uint8 ControlChanIdx);
 * @brief          ADC Ip Config for Logical ID 0 corresponding to the ADC1 configuration variant _VS_0.
 */
 extern const Adc_Ip_ConfigType AdcIpConfig_0_VS_0;
+
+/**
+* @brief          ADC Ip Config for Logical ID 1 corresponding to the ADC0 configuration variant _VS_0.
+*/
+extern const Adc_Ip_ConfigType AdcIpConfig_1_VS_0;
 
 
 

@@ -127,6 +127,9 @@ static const uint8 au8Port_PartitionList_VS_0[PORT_MAX_PARTITION] =
 static const uint32 au32Port_PinToPartitionMap_VS_0[PORT_MAX_CONFIGURED_PADS_U16] =
 {
     (uint32)0x00000001,
+    (uint32)0x00000001,
+    (uint32)0x00000001,
+    (uint32)0x00000001,
     (uint32)0x00000001
 };
 
@@ -144,7 +147,6 @@ static const uint16 Port_au16NoUnUsedPadsArrayDefault_VS_0[PORT_MAX_UNUSED_PADS_
 {
     (uint16)0,
     (uint16)1,
-    (uint16)2,
     (uint16)3,
     (uint16)6,
     (uint16)7,
@@ -157,8 +159,6 @@ static const uint16 Port_au16NoUnUsedPadsArrayDefault_VS_0[PORT_MAX_UNUSED_PADS_
     (uint16)15,
     (uint16)16,
     (uint16)17,
-    (uint16)32,
-    (uint16)33,
     (uint16)34,
     (uint16)35,
     (uint16)36,
@@ -249,7 +249,13 @@ static const Port_PinConfigType Port_aPinConfigDefault_VS_0[PORT_MAX_CONFIGURED_
     /* PCR Id, PCR Value, Output Level, Direction, IsGpio, Direction Configurable, Mode Changeable */
     { (uint16)100, (uint32)0x00000000, (uint8)2, (Port_PinDirectionType)0, (boolean)FALSE, (boolean)FALSE, (boolean)TRUE },
     /* PCR Id, PCR Value, Output Level, Direction, IsGpio, Direction Configurable, Mode Changeable */
-    { (uint16)44, (uint32)0x00000000, (uint8)2, (Port_PinDirectionType)0, (boolean)FALSE, (boolean)FALSE, (boolean)TRUE }
+    { (uint16)44, (uint32)0x00000000, (uint8)2, (Port_PinDirectionType)0, (boolean)FALSE, (boolean)FALSE, (boolean)TRUE },
+    /* PCR Id, PCR Value, Output Level, Direction, IsGpio, Direction Configurable, Mode Changeable */
+    { (uint16)32, (uint32)0x00000000, (uint8)2, (Port_PinDirectionType)0, (boolean)FALSE, (boolean)FALSE, (boolean)TRUE },
+    /* PCR Id, PCR Value, Output Level, Direction, IsGpio, Direction Configurable, Mode Changeable */
+    { (uint16)33, (uint32)0x00000000, (uint8)2, (Port_PinDirectionType)0, (boolean)FALSE, (boolean)FALSE, (boolean)TRUE },
+    /* PCR Id, PCR Value, Output Level, Direction, IsGpio, Direction Configurable, Mode Changeable */
+    { (uint16)2, (uint32)0x00000000, (uint8)2, (Port_PinDirectionType)0, (boolean)FALSE, (boolean)FALSE, (boolean)TRUE }
 };
 
 #if (0UL != PORT_MAX_CONFIGURED_DIGITAL_FILTER_PORTS_VS_0_U8)

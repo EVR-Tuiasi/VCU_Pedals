@@ -70,7 +70,7 @@ extern "C"{
 /**
  * @brief   Define the number of maximum hardware unit configured
  */
-#define ADC_IPW_MAX_HW_UNITS_CFG                (1U)
+#define ADC_IPW_MAX_HW_UNITS_CFG                (2U)
 
 
 /**

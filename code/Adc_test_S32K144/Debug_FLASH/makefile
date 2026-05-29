@@ -8,6 +8,8 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include src/Pedals/subdir.mk
+-include src/Communications/subdir.mk
 -include src/subdir.mk
 -include generate/src/subdir.mk
 -include board/subdir.mk
@@ -33,7 +35,7 @@ Adc_test_S32K144.siz \
 all: Adc_test_S32K144.elf secondary-outputs
 
 # Tool invocations
-Adc_test_S32K144.elf: $(OBJS) C:/Users/MW/workspaceS32DS.3.6.0/Adc_test_S32K144/Project_Settings/Linker_Files/linker_flash_s32k144.ld $(USER_OBJS)
+Adc_test_S32K144.elf: $(OBJS) C:/Users/MW/Documents/GitHub/VCU_Pedals/code/Adc_test_S32K144/Project_Settings/Linker_Files/linker_flash_s32k144.ld $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Standard S32DS C Linker'
 	arm-none-eabi-gcc -o "Adc_test_S32K144.elf" "@Adc_test_S32K144.args"  $(USER_OBJS)

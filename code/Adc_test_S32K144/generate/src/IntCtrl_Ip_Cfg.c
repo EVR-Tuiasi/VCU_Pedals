@@ -70,10 +70,11 @@ extern "C" {
 
 /* List of configuration for interrupts  */
 static const IntCtrl_Ip_IrqConfigType aIrqConfiguration[] = {
-    {ADC0_IRQn, (boolean)TRUE, 0U, Adc_1_Isr},
+    {ADC0_IRQn, (boolean)TRUE, 0U, Adc_0_Isr},
+    {ADC1_IRQn, (boolean)TRUE, 0U, Adc_1_Isr},
 };
 const IntCtrl_Ip_CtrlConfigType intCtrlConfig = {
-    1U,
+    2U,
     aIrqConfiguration
 };
 

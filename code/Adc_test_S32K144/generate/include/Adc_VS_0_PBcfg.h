@@ -93,13 +93,14 @@ extern "C"{
 *
 */
 
-#define ADC_CFGSET_VS_0_GROUP_0_CHANNELS      (2U)
+#define ADC_CFGSET_VS_0_GROUP_0_CHANNELS      (3U)
+#define ADC_CFGSET_VS_0_GROUP_1_CHANNELS      (2U)
 
 /**
 * @brief          Total number of groups in Config.
 *
 */
-#define ADC_GROUPS_VS_0                       (1U)
+#define ADC_GROUPS_VS_0                       (2U)
 /*==================================================================================================
 *                                       GLOBAL FUNCTIONS
 ==================================================================================================*/

@@ -197,10 +197,10 @@
 		<COND_TOOLCHAIN_CUSTOM_OPTION/>
 	</storageModule>
 	<storageModule moduleId="com.nxp.s32ds.cle.uct.internal.core.toolchainScriptProfile">
-		<COND_TOOLCHAIN_COMPONENTS_OPTION>COPY=platform.driver.Platform;platform.driver.clock;platform.driver.adc;platform.driver.mcu;platform.driver.osif;platform.driver.port;platform.driver.mcl;platform.driver.dio;platform.driver.Rm</COND_TOOLCHAIN_COMPONENTS_OPTION>
+		<COND_TOOLCHAIN_COMPONENTS_OPTION>COPY=platform.driver.Platform;platform.driver.clock;platform.driver.adc;platform.driver.mcu;platform.driver.osif;platform.driver.ecum;platform.driver.port;platform.driver.dio;platform.driver.Can_43_FLEXCAN;platform.driver.uart;platform.driver.mcl;platform.driver.CanIf;platform.driver.Rm</COND_TOOLCHAIN_COMPONENTS_OPTION>
 	</storageModule>
 	<storageModule moduleId="com.nxp.s32ds.cle.uct.core">
-		<sdkComponents>platform.driver.det;platform.driver.clock;platform.driver.rte_mcu;platform.driver.adc;platform.driver.rte_adc;platform.driver.osif;platform.driver.mcu;platform.driver.mcl;platform.driver.rte_mcl;platform.driver.Rm;platform.driver.rte_rm;platform.driver.rte_dio;platform.driver.dio;platform.driver.rte_port;platform.driver.port;platform.driver.rte_platform;platform.driver.Platform</sdkComponents>
+		<sdkComponents>platform.driver.det;platform.driver.clock;platform.driver.rte_mcu;platform.driver.adc;platform.driver.rte_adc;platform.driver.osif;platform.driver.mcu;platform.driver.mcl;platform.driver.rte_mcl;platform.driver.Rm;platform.driver.rte_rm;platform.driver.rte_dio;platform.driver.dio;platform.driver.rte_port;platform.driver.port;platform.driver.rte_platform;platform.driver.Platform;platform.driver.Can_43_FLEXCAN;platform.driver.rte_can;platform.driver.CanIf;platform.driver.ecum;platform.driver.uart;platform.driver.rte_uart</sdkComponents>
 		<COND_TOOLCHAIN_ADD_REMOVE_COMPONENTS_OPTION>true</COND_TOOLCHAIN_ADD_REMOVE_COMPONENTS_OPTION>
 		<COND_TOOLCHAIN_COPY_SOURCES>true</COND_TOOLCHAIN_COPY_SOURCES>
 	</storageModule>

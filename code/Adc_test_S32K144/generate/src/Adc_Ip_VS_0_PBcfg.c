@@ -93,7 +93,7 @@ extern "C"{
 /**
 * @brief          ADC Ip List of Channels Configuration for Logical ID 0 corresponding to the ADC1 configuration variant VS_0.
 */
-static const Adc_Ip_ChanConfigType AdcIpChansConfig_0_VS_0[2U] =
+static const Adc_Ip_ChanConfigType AdcIpChansConfig_0_VS_0[3U] =
 {
     {
         0U, /* ChnIdx */
@@ -105,6 +105,34 @@ static const Adc_Ip_ChanConfigType AdcIpChansConfig_0_VS_0[2U] =
     {
         1U, /* ChnIdx */
         ADC_IP_INPUTCHAN_EXT7, /* Channel */
+    #if (ADC_IP_AIEN_INTERRUPT_ENABLE == STD_ON)
+        (boolean)FALSE /* InterruptEnable */
+    #endif /* (ADC_IP_AIEN_INTERRUPT_ENABLE == STD_ON) */
+    },
+    {
+        2U, /* ChnIdx */
+        ADC_IP_INPUTCHAN_EXT2, /* Channel */
+    #if (ADC_IP_AIEN_INTERRUPT_ENABLE == STD_ON)
+        (boolean)FALSE /* InterruptEnable */
+    #endif /* (ADC_IP_AIEN_INTERRUPT_ENABLE == STD_ON) */
+    }
+};
+
+/**
+* @brief          ADC Ip List of Channels Configuration for Logical ID 1 corresponding to the ADC0 configuration variant VS_0.
+*/
+static const Adc_Ip_ChanConfigType AdcIpChansConfig_1_VS_0[2U] =
+{
+    {
+        0U, /* ChnIdx */
+        ADC_IP_INPUTCHAN_EXT0, /* Channel */
+    #if (ADC_IP_AIEN_INTERRUPT_ENABLE == STD_ON)
+        (boolean)FALSE /* InterruptEnable */
+    #endif /* (ADC_IP_AIEN_INTERRUPT_ENABLE == STD_ON) */
+    },
+    {
+        1U, /* ChnIdx */
+        ADC_IP_INPUTCHAN_EXT1, /* Channel */
     #if (ADC_IP_AIEN_INTERRUPT_ENABLE == STD_ON)
         (boolean)FALSE /* InterruptEnable */
     #endif /* (ADC_IP_AIEN_INTERRUPT_ENABLE == STD_ON) */
@@ -150,6 +178,43 @@ const Adc_Ip_ConfigType AdcIpConfig_0_VS_0 =
     AdcIpChansConfig_0_VS_0, /* ChannelConfigs */
 #if (ADC_IP_AIEN_INTERRUPT_ENABLE == STD_ON)
     Adc_Ipw_Adc1EndConversionNotification /* ConversionCompleteNotification */
+#endif /* (ADC_IP_AIEN_INTERRUPT_ENABLE == STD_ON) */
+};
+
+/**
+* @brief          ADC Ip Config for Logical ID 1 corresponding to the ADC0 configuration variant _VS_0.
+*/
+const Adc_Ip_ConfigType AdcIpConfig_1_VS_0 =
+{
+    ADC_IP_CLK_FULL_BUS, /* ClockDivide */
+    ADC_IP_CLK_EIGHTH_BUS, /* CalibrationClockDivide */
+    ADC_IP_CLK_ALT_1, /* InputClock */
+    ADC_IP_DEFAULT_SAMPLE_TIME, /* SampleTime */
+    (boolean)FALSE, /* AvgEn */
+    ADC_IP_AVG_4_CONV, /* AvgSel */
+    ADC_IP_RESOLUTION_12BIT, /* Resolution */
+    ADC_IP_TRIGGER_HARDWARE, /* TriggerMode */
+#if (ADC_IP_ENABLE_SIM_SOURCE_SELECTION == STD_ON)
+    ADC_IP_PRETRIGGER_SEL_PDB, /* PretriggerSel */
+    ADC_IP_TRIGGER_SEL_PDB, /* TriggerSel */
+#endif /* (ADC_IP_ENABLE_SIM_SOURCE_SELECTION == STD_ON) */
+    (boolean)FALSE, /* DmaEnable */
+    ADC_IP_VOLTAGEREF_VREF, /* VoltageRef */
+    (boolean)FALSE, /* ContinuousConvEnable */
+#if (ADC_IP_SUPPLY_MONITORING_ENABLED == STD_ON)
+    (boolean)FALSE, /* SupplyMonitoringEnable */
+#endif /* (ADC_IP_SUPPLY_MONITORING_ENABLED == STD_ON) */
+    (boolean)FALSE, /* CompareEnable */
+    (boolean)FALSE, /* CompareGreaterThanEnable */
+    (boolean)FALSE, /* CompareRangeFuncEnable */
+    0U, /* CompVal1 */
+    255U, /* CompVal2 */
+    4U, /* UsrGain */
+    0U, /* UsrOffset */
+    0U, /* NumChannels */
+    AdcIpChansConfig_1_VS_0, /* ChannelConfigs */
+#if (ADC_IP_AIEN_INTERRUPT_ENABLE == STD_ON)
+    Adc_Ipw_Adc0EndConversionNotification /* ConversionCompleteNotification */
 #endif /* (ADC_IP_AIEN_INTERRUPT_ENABLE == STD_ON) */
 };
 
