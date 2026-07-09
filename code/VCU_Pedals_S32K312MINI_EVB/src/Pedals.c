@@ -32,6 +32,10 @@ extern "C"{
 static Adc_ValueGroupType buffer0[4];
 static Adc_ValueGroupType buffer1[1];
 static PedalsData_t date_pedale;
+static SensorLimits acc1 = {2600, 4500};
+static SensorLimits acc2 = {3130, 1670};
+static SensorLimits brake1 = {0, 0};
+static SensorLimits brake2 = {0, 0};
 
 /*==================================================================================================
 *                                      GLOBAL CONSTANTS
@@ -122,7 +126,11 @@ void Pedals_Update(void){
 	i = 50000;
 
 	date_pedale.AcceleratorSensor1Voltage = buffer0[0];
+	date_pedale.AcceleratorSensor1TravelPercentage = 100*(buffer0[0]-acc1.start_valid)/(acc1.end_valid-acc1.start_valid);
+
 	date_pedale.AcceleratorSensor2Voltage = buffer0[1];
+	date_pedale.AcceleratorSensor2TravelPercentage = 100*(acc2.start_valid-buffer0[1])/(acc2.start_valid-acc2.end_valid);
+
 	date_pedale.BrakeSensor1Voltage = buffer0[2];
 	date_pedale.BrakeSensor2Voltage = buffer0[3];
 }

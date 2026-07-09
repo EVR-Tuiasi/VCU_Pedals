@@ -108,6 +108,11 @@ int main(void)
 		WriteUartDataAtAddress(Pedals_GetData(BRAKE, SENSOR1, VOLTAGE), &MonitoredValues.PedalsMonitoredValues.BrakeSensor1Voltage);
 		WriteUartDataAtAddress(Pedals_GetData(BRAKE, SENSOR2, VOLTAGE), &MonitoredValues.PedalsMonitoredValues.BrakeSensor2Voltage);
 
+		WriteUartDataAtAddress(Pedals_GetData(ACCEL, SENSOR1, PERCENTAGE), &MonitoredValues.PedalsMonitoredValues.AcceleratorSensor1TravelPercentage);
+		WriteUartDataAtAddress(Pedals_GetData(ACCEL, SENSOR2, PERCENTAGE), &MonitoredValues.PedalsMonitoredValues.AcceleratorSensor2TravelPercentage);
+		WriteUartDataAtAddress(Pedals_GetData(BRAKE, SENSOR1, PERCENTAGE), &MonitoredValues.PedalsMonitoredValues.BrakeSensor1TravelPercentage);
+		WriteUartDataAtAddress(Pedals_GetData(BRAKE, SENSOR2, PERCENTAGE), &MonitoredValues.PedalsMonitoredValues.BrakeSensor2TravelPercentage);
+
 		UartMessaging_Update();
 	}
 }

@@ -88,6 +88,11 @@ typedef struct{
     bool Brake_Implausibility;                          /* 1 bit, 0 means safe, 1 means errors */
 }PedalsErrors_t;
 
+typedef struct{
+	uint16_t start_valid;
+	uint16_t end_valid;
+}SensorLimits;
+
 /*==================================================================================================
 *                                       LOCAL MACROS
 ==================================================================================================*/
