@@ -24,6 +24,7 @@ extern "C" {
 #include "CanMessaging.h"
 #include "UartMessaging.h"
 #include "Messaging.h"
+#include "Pedals.h"
 
 /*==================================================================================================
 *                          LOCAL TYPEDEFS (STRUCTURES, UNIONS, ENUMS)
@@ -79,9 +80,6 @@ uint8_t dataDeTrimisTSAC3[8]={0xF8, 0x13, 0xE7, 0xF9, 0xFE, 0x7F, 0x9F, 0xE7}; /
 uint8_t dataDeTrimisTSAC4[8]={0x8A, 0xE2, 0xBF, 0xC1, 0xF8, 0x2F, 0xF8, 0x2F}; //TSAC4
 uint8_t dataDeTrimisComm[8]={0xF0, 0x00, 0x00, 0x00, 0x00, 0x0C, 0xFF, 0xE8}; //comunicatii
 
-Adc_ValueGroupType buffer0[4];
-Adc_ValueGroupType buffer1[1];
-
 int main(void)
 {
 	Mcu_Init(NULL_PTR);
@@ -101,28 +99,14 @@ int main(void)
 
 	CanMessaging_Init();
 	UartMessaging_Init();
-
-	Adc_SetupResultBuffer(AdcGroup_0, buffer0);
-	Adc_SetupResultBuffer(AdcGroup_1, buffer1);
-
-	volatile uint32_t i = 50000;
+	Pedals_Init();
 
 	while(1){
-		Adc_StartGroupConversion(AdcGroup_0);
-		Adc_StartGroupConversion(AdcGroup_1);
-
-		while(Adc_GetGroupStatus(AdcGroup_0) == ADC_BUSY);
-		while(Adc_GetGroupStatus(AdcGroup_1) == ADC_BUSY);
-
-		Adc_ReadGroup(AdcGroup_0, buffer0);
-		Adc_ReadGroup(AdcGroup_1, buffer1);
-		while(i--);
-		i = 50000;
-
-		WriteUartDataAtAddress(buffer0[0], &MonitoredValues.PedalsMonitoredValues.AcceleratorSensor1Voltage);
-		WriteUartDataAtAddress(buffer0[1], &MonitoredValues.PedalsMonitoredValues.AcceleratorSensor2Voltage);
-		WriteUartDataAtAddress(buffer0[2], &MonitoredValues.PedalsMonitoredValues.BrakeSensor1Voltage);
-		WriteUartDataAtAddress(buffer0[3], &MonitoredValues.PedalsMonitoredValues.BrakeSensor2Voltage);
+		Pedals_Update();
+		WriteUartDataAtAddress(Pedals_GetData(ACCEL, SENSOR1, VOLTAGE), &MonitoredValues.PedalsMonitoredValues.AcceleratorSensor1Voltage);
+		WriteUartDataAtAddress(Pedals_GetData(ACCEL, SENSOR2, VOLTAGE), &MonitoredValues.PedalsMonitoredValues.AcceleratorSensor2Voltage);
+		WriteUartDataAtAddress(Pedals_GetData(BRAKE, SENSOR1, VOLTAGE), &MonitoredValues.PedalsMonitoredValues.BrakeSensor1Voltage);
+		WriteUartDataAtAddress(Pedals_GetData(BRAKE, SENSOR2, VOLTAGE), &MonitoredValues.PedalsMonitoredValues.BrakeSensor2Voltage);
 
 		UartMessaging_Update();
 	}
