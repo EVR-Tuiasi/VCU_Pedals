@@ -532,11 +532,6 @@
                   <data type="Version">1.0.0</data>
                </feature>
             </dependency>
-            <dependency resourceType="Tool" resourceId="Clocks" description="The Clocks tool is required by the Peripherals tool, but it is disabled." problem_level="2" source="Peripherals">
-               <feature name="enabled" evaluation="equal">
-                  <data>true</data>
-               </feature>
-            </dependency>
          </dependencies>
          <generated_project_files>
             <file path="board/Siul2_Port_Ip_Cfg.c" update_enabled="true"/>
@@ -4590,8 +4585,8 @@
                                        <setting name="AdcExtDMAChanEnable" value="false"/>
                                        <struct name="AdcGroupConversionConfiguration">
                                           <setting name="Name" value="AdcGroupConversionConfiguration"/>
-                                          <setting name="AdcGroupHardwareAverageEnable" value="false"/>
-                                          <setting name="AdcGroupHardwareAverageSelect" value="SAMPLES_4"/>
+                                          <setting name="AdcGroupHardwareAverageEnable" value="true"/>
+                                          <setting name="AdcGroupHardwareAverageSelect" value="SAMPLES_32"/>
                                           <setting name="AdcSamplingDuration0" value="22"/>
                                           <setting name="AdcSamplingDuration1" value="22"/>
                                           <setting name="AdcSamplingDuration2" value="22"/>

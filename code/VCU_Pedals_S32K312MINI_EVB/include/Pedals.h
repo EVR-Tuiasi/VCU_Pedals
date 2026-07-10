@@ -55,6 +55,13 @@ typedef enum{
 	BARS
 }BrakePressure_t;
 
+typedef enum{
+	SHORT_TO_GND,
+	SHORT_TO_VCC,
+	OUT_OF_RANGE_OUTPUT,
+	IMPLAUSIBILITY
+}PedalError_t;
+
 typedef struct{
 	uint16_t AcceleratorSensor1Voltage;
 	uint16_t AcceleratorSensor2Voltage;
@@ -134,7 +141,7 @@ typedef struct{
 
 void Pedals_Init(void);
 void Pedals_Test(void);
-PedalsErrors_t Pedals_GetErrors(void);
+boolean Pedals_GetError(Pedal_t PedalSelect, Sensor_t SensorSelect, PedalError_t DesiredValueType);
 uint32_t Pedals_GetData(Pedal_t PedalSelect, Sensor_t SensorSelect, PedalValue_t DesiredValueType);
 uint32_t Pedals_GetPressure(BrakePressure_t ValueType);
 void Pedals_Update(void);

@@ -357,9 +357,9 @@ const Adc_Ipw_GroupConfig AdcIpwGroupConfig_1 =
 {
 #if (STD_ON == ADC_AVERAGING_FUNCTIONALITY_SUPPORT)
     /**< @brief Main Average enable status of group */
-    STD_OFF, /* GroupAvgEnable */
+    STD_ON, /* GroupAvgEnable */
     /**< @brief Main Average selection of group */
-    ADC_SAR_IP_AVG_4_CONV, /* GroupAvgSelect */
+    ADC_SAR_IP_AVG_32_CONV, /* GroupAvgSelect */
 #if (ADC_DUAL_CLOCK_MODE == STD_ON)
     /**< @brief Alternate Average enable status of group */
     STD_ON, /* GroupAvgEnableAlternate */
