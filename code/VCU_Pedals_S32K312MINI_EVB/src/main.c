@@ -106,38 +106,38 @@ int main(void)
 	while(1){
 		Pedals_Update();
 		Pedals_Test();
-		WriteUartDataAtAddress(Pedals_GetData(ACCEL, SENSOR1, VOLTAGE), &MonitoredValues.PedalsMonitoredValues.AcceleratorSensor1Voltage);
-		WriteUartDataAtAddress(Pedals_GetData(ACCEL, SENSOR2, VOLTAGE), &MonitoredValues.PedalsMonitoredValues.AcceleratorSensor2Voltage);
-		WriteUartDataAtAddress(Pedals_GetData(BRAKE, SENSOR1, VOLTAGE), &MonitoredValues.PedalsMonitoredValues.BrakeSensor1Voltage);
-		WriteUartDataAtAddress(Pedals_GetData(BRAKE, SENSOR2, VOLTAGE), &MonitoredValues.PedalsMonitoredValues.BrakeSensor2Voltage);
+		WriteCanDataAtAddress(Pedals_GetData(ACCEL, SENSOR1, VOLTAGE), &MonitoredValues.PedalsMonitoredValues.AcceleratorSensor1Voltage);
+		WriteCanDataAtAddress(Pedals_GetData(ACCEL, SENSOR2, VOLTAGE), &MonitoredValues.PedalsMonitoredValues.AcceleratorSensor2Voltage);
+		WriteCanDataAtAddress(Pedals_GetData(BRAKE, SENSOR1, VOLTAGE), &MonitoredValues.PedalsMonitoredValues.BrakeSensor1Voltage);
+		WriteCanDataAtAddress(Pedals_GetData(BRAKE, SENSOR2, VOLTAGE), &MonitoredValues.PedalsMonitoredValues.BrakeSensor2Voltage);
 
-		WriteUartDataAtAddress(Pedals_GetData(ACCEL, SENSOR1, PERCENTAGE), &MonitoredValues.PedalsMonitoredValues.AcceleratorSensor1TravelPercentage);
-		WriteUartDataAtAddress(Pedals_GetData(ACCEL, SENSOR2, PERCENTAGE), &MonitoredValues.PedalsMonitoredValues.AcceleratorSensor2TravelPercentage);
-		WriteUartDataAtAddress(Pedals_GetData(BRAKE, SENSOR1, PERCENTAGE), &MonitoredValues.PedalsMonitoredValues.BrakeSensor1TravelPercentage);
-		WriteUartDataAtAddress(Pedals_GetData(BRAKE, SENSOR2, PERCENTAGE), &MonitoredValues.PedalsMonitoredValues.BrakeSensor2TravelPercentage);
+		WriteCanDataAtAddress(Pedals_GetData(ACCEL, SENSOR1, PERCENTAGE), &MonitoredValues.PedalsMonitoredValues.AcceleratorSensor1TravelPercentage);
+		WriteCanDataAtAddress(Pedals_GetData(ACCEL, SENSOR2, PERCENTAGE), &MonitoredValues.PedalsMonitoredValues.AcceleratorSensor2TravelPercentage);
+		WriteCanDataAtAddress(Pedals_GetData(BRAKE, SENSOR1, PERCENTAGE), &MonitoredValues.PedalsMonitoredValues.BrakeSensor1TravelPercentage);
+		WriteCanDataAtAddress(Pedals_GetData(BRAKE, SENSOR2, PERCENTAGE), &MonitoredValues.PedalsMonitoredValues.BrakeSensor2TravelPercentage);
 
-		WriteUartDataAtAddress(Pedals_GetError(ACCEL, SENSOR1, SHORT_TO_GND), &MonitoredValues.PedalsMonitoredValues.Accel_Sensor1_ShortToGnd);
-		WriteUartDataAtAddress(Pedals_GetError(ACCEL, SENSOR2, SHORT_TO_GND), &MonitoredValues.PedalsMonitoredValues.Accel_Sensor2_ShortToGnd);
-		WriteUartDataAtAddress(Pedals_GetError(BRAKE, SENSOR1, SHORT_TO_GND), &MonitoredValues.PedalsMonitoredValues.Brake_Sensor1_ShortToGnd);
-		WriteUartDataAtAddress(Pedals_GetError(BRAKE, SENSOR2, SHORT_TO_GND), &MonitoredValues.PedalsMonitoredValues.Brake_Sensor2_ShortToGnd);
+		WriteCanDataAtAddress(Pedals_GetError(ACCEL, SENSOR1, SHORT_TO_GND), &MonitoredValues.PedalsMonitoredValues.Accel_Sensor1_ShortToGnd);
+		WriteCanDataAtAddress(Pedals_GetError(ACCEL, SENSOR2, SHORT_TO_GND), &MonitoredValues.PedalsMonitoredValues.Accel_Sensor2_ShortToGnd);
+		WriteCanDataAtAddress(Pedals_GetError(BRAKE, SENSOR1, SHORT_TO_GND), &MonitoredValues.PedalsMonitoredValues.Brake_Sensor1_ShortToGnd);
+		WriteCanDataAtAddress(Pedals_GetError(BRAKE, SENSOR2, SHORT_TO_GND), &MonitoredValues.PedalsMonitoredValues.Brake_Sensor2_ShortToGnd);
 
-		WriteUartDataAtAddress(Pedals_GetError(ACCEL, SENSOR1, SHORT_TO_VCC), &MonitoredValues.PedalsMonitoredValues.Accel_Sensor1_ShortToVcc);
-		WriteUartDataAtAddress(Pedals_GetError(ACCEL, SENSOR2, SHORT_TO_VCC), &MonitoredValues.PedalsMonitoredValues.Accel_Sensor2_ShortToVcc);
-		WriteUartDataAtAddress(Pedals_GetError(BRAKE, SENSOR1, SHORT_TO_VCC), &MonitoredValues.PedalsMonitoredValues.Brake_Sensor1_ShortToVcc);
-		WriteUartDataAtAddress(Pedals_GetError(BRAKE, SENSOR2, SHORT_TO_VCC), &MonitoredValues.PedalsMonitoredValues.Brake_Sensor2_ShortToVcc);
+		WriteCanDataAtAddress(Pedals_GetError(ACCEL, SENSOR1, SHORT_TO_VCC), &MonitoredValues.PedalsMonitoredValues.Accel_Sensor1_ShortToVcc);
+		WriteCanDataAtAddress(Pedals_GetError(ACCEL, SENSOR2, SHORT_TO_VCC), &MonitoredValues.PedalsMonitoredValues.Accel_Sensor2_ShortToVcc);
+		WriteCanDataAtAddress(Pedals_GetError(BRAKE, SENSOR1, SHORT_TO_VCC), &MonitoredValues.PedalsMonitoredValues.Brake_Sensor1_ShortToVcc);
+		WriteCanDataAtAddress(Pedals_GetError(BRAKE, SENSOR2, SHORT_TO_VCC), &MonitoredValues.PedalsMonitoredValues.Brake_Sensor2_ShortToVcc);
 
-		WriteUartDataAtAddress(Pedals_GetError(ACCEL, SENSOR1, OUT_OF_RANGE_OUTPUT), &MonitoredValues.PedalsMonitoredValues.Accel_Sensor1_OutOfRangeOutput);
-		WriteUartDataAtAddress(Pedals_GetError(ACCEL, SENSOR2, OUT_OF_RANGE_OUTPUT), &MonitoredValues.PedalsMonitoredValues.Accel_Sensor2_OutOfRangeOutput);
-		WriteUartDataAtAddress(Pedals_GetError(BRAKE, SENSOR1, OUT_OF_RANGE_OUTPUT), &MonitoredValues.PedalsMonitoredValues.Brake_Sensor1_OutOfRangeOutput);
-		WriteUartDataAtAddress(Pedals_GetError(BRAKE, SENSOR2, OUT_OF_RANGE_OUTPUT), &MonitoredValues.PedalsMonitoredValues.Brake_Sensor2_OutOfRangeOutput);
+		WriteCanDataAtAddress(Pedals_GetError(ACCEL, SENSOR1, OUT_OF_RANGE_OUTPUT), &MonitoredValues.PedalsMonitoredValues.Accel_Sensor1_OutOfRangeOutput);
+		WriteCanDataAtAddress(Pedals_GetError(ACCEL, SENSOR2, OUT_OF_RANGE_OUTPUT), &MonitoredValues.PedalsMonitoredValues.Accel_Sensor2_OutOfRangeOutput);
+		WriteCanDataAtAddress(Pedals_GetError(BRAKE, SENSOR1, OUT_OF_RANGE_OUTPUT), &MonitoredValues.PedalsMonitoredValues.Brake_Sensor1_OutOfRangeOutput);
+		WriteCanDataAtAddress(Pedals_GetError(BRAKE, SENSOR2, OUT_OF_RANGE_OUTPUT), &MonitoredValues.PedalsMonitoredValues.Brake_Sensor2_OutOfRangeOutput);
 
-		WriteUartDataAtAddress(Pedals_GetError(ACCEL, 0, IMPLAUSIBILITY), &MonitoredValues.PedalsMonitoredValues.Accel_Implausibility);
-		WriteUartDataAtAddress(Pedals_GetError(BRAKE, 0, IMPLAUSIBILITY), &MonitoredValues.PedalsMonitoredValues.Brake_Implausibility);
+		WriteCanDataAtAddress(Pedals_GetError(ACCEL, 0, IMPLAUSIBILITY), &MonitoredValues.PedalsMonitoredValues.Accel_Implausibility);
+		WriteCanDataAtAddress(Pedals_GetError(BRAKE, 0, IMPLAUSIBILITY), &MonitoredValues.PedalsMonitoredValues.Brake_Implausibility);
 
-		WriteUartDataAtAddress(Pedals_GetPressure(PRESSURE_VOLTAGE), &MonitoredValues.PedalsMonitoredValues.PressureSensorVoltage);
-		WriteUartDataAtAddress(Pedals_GetPressure(BARS), &MonitoredValues.PedalsMonitoredValues.PressureSensorBars);
+		WriteCanDataAtAddress(Pedals_GetPressure(PRESSURE_VOLTAGE), &MonitoredValues.PedalsMonitoredValues.PressureSensorVoltage);
+		WriteCanDataAtAddress(Pedals_GetPressure(BARS), &MonitoredValues.PedalsMonitoredValues.PressureSensorBars);
 
-		UartMessaging_Update();
+		CanMessaging_Update();
 	}
 }
 
