@@ -10,6 +10,7 @@ extern "C"{
 * 3) internal and external interfaces from this unit
 ==================================================================================================*/
 #include "Adc.h"
+#include "Pwm.h"
 #include "Pedals.h"
 
 /*==================================================================================================
@@ -24,7 +25,8 @@ extern "C"{
 /*==================================================================================================
 *                                      LOCAL CONSTANTS
 ==================================================================================================*/
-#define MAX_VOLTAGE 10813U //3.3 V pt adc de 14 biti
+#define MAX_VOLTAGE 16383U //3.3 V pt adc de 14 biti
+#define MAX_PWM_DUTY_CYCLE 32768U
 
 /*==================================================================================================
 *                                      LOCAL VARIABLES
@@ -33,12 +35,12 @@ static Adc_ValueGroupType buffer0[4];
 static Adc_ValueGroupType buffer1[1];
 static PedalsData_t date_pedale = {0};
 volatile PedalsErrors_t erori_pedale = {0};
-static SensorLimits acc1 = {2550, 4500};
-static SensorLimits acc2 = {3130, 1670};
-static SensorLimits brake1 = {2550, 4500};
-static SensorLimits brake2 = {3130, 1670};
-static uint8_t marja_eroare = 10;
-static uint16_t marja_limite = 1310; //0.4V pt adc de 14 biti
+static SensorLimits acc1 = {3660, 6450};
+static SensorLimits acc2 = {4680, 2620};
+static SensorLimits brake1 = {3660, 6450};
+static SensorLimits brake2 = {4680, 2620};
+static uint8_t marja_eroare = 200;
+static uint16_t marja_limite = 1310; //1310 - 0.4V pt adc de 14 biti;
 static uint8_t marja_implausibility = 10;
 
 /*==================================================================================================
@@ -64,7 +66,21 @@ void Pedals_Init(void){
 	Adc_SetupResultBuffer(AdcGroup_1, buffer1);
 }
 void Pedals_Test(void){
+	if(erori_pedale.Accel_Implausibility || erori_pedale.Accel_Sensor1_OutOfRangeOutput || erori_pedale.Accel_Sensor1_ShortToGnd || erori_pedale.Accel_Sensor1_ShortToVcc || erori_pedale.Accel_Sensor2_OutOfRangeOutput || erori_pedale.Accel_Sensor2_ShortToGnd || erori_pedale.Accel_Sensor2_ShortToVcc || erori_pedale.Brake_Implausibility || erori_pedale.Brake_Sensor1_OutOfRangeOutput || erori_pedale.Brake_Sensor1_ShortToGnd || erori_pedale.Brake_Sensor1_ShortToVcc || erori_pedale.Brake_Sensor2_OutOfRangeOutput || erori_pedale.Brake_Sensor2_ShortToGnd || erori_pedale.Brake_Sensor2_ShortToVcc)
+		Pwm_SetDutyCycle(0, MAX_PWM_DUTY_CYCLE);
+	uint32_t acceleration_travel;
+	if(date_pedale.AcceleratorSensor1TravelPercentage < date_pedale.AcceleratorSensor2TravelPercentage)
+		acceleration_travel = (uint32_t)date_pedale.AcceleratorSensor1TravelPercentage;
+	else
+		acceleration_travel = (uint32_t)date_pedale.AcceleratorSensor2TravelPercentage;
+	Pwm_SetDutyCycle(1, (acceleration_travel * MAX_PWM_DUTY_CYCLE)/100U);
 
+	uint32_t brake_travel;
+	if(date_pedale.BrakeSensor1TravelPercentage < date_pedale.BrakeSensor2TravelPercentage)
+		brake_travel = (uint32_t)date_pedale.BrakeSensor1TravelPercentage;
+	else
+		brake_travel = (uint32_t)date_pedale.BrakeSensor2TravelPercentage;
+	Pwm_SetDutyCycle(2, (brake_travel * MAX_PWM_DUTY_CYCLE)/100U);
 }
 boolean Pedals_GetError(Pedal_t PedalSelect, Sensor_t SensorSelect, PedalError_t DesiredValueType){
 	switch(DesiredValueType){
@@ -269,7 +285,7 @@ void Pedals_Update(void){
 		erori_pedale.Brake_Implausibility = 1;
 
 	// Senzor Presiune
-	date_pedale.PressureSensorVoltage = ((uint32_t)500U * (uint32_t)buffer1[0]) * (uint32_t)50U / ((uint32_t)33U * (uint32_t)16383U);
+	date_pedale.PressureSensorVoltage = ((uint32_t)500U * (uint32_t)buffer1[0]) / (uint32_t)16383U;
 	uint32_t pressureVoltageCopy = (uint32_t)date_pedale.PressureSensorVoltage;
 	if(pressureVoltageCopy < 50)
 		pressureVoltageCopy = 50;

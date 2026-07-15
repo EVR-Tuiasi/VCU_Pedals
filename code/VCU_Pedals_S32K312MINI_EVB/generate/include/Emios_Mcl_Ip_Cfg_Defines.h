@@ -47,6 +47,7 @@ extern "C"
 * 3) internal and external interfaces from this unit
 ==================================================================================================*/
 #include "Emios_Mcl_Ip_Cfg_DeviceRegisters.h"
+#include "Emios_Pwm_Ip_CfgDefines.h"
 
 /*==================================================================================================
 *                               HEADER FILE VERSION INFORMATION
@@ -80,6 +81,11 @@ extern "C"
 #endif
 
 #ifndef DISABLE_MCAL_INTERMODULE_ASR_CHECK
+    /* Check if this header file and Emios_Pwm_Ip_CfgDefines.h file are of the same Autosar version */
+    #if ((EMIOS_MCL_IP_CFG_DEFINES_AR_RELEASE_MAJOR_VERSION != EMIOS_PWM_IP_CFGDEFINES_AR_RELEASE_MAJOR_VERSION) || \
+        (EMIOS_MCL_IP_CFG_DEFINES_AR_RELEASE_MINOR_VERSION != EMIOS_PWM_IP_CFGDEFINES_AR_RELEASE_MINOR_VERSION))
+        #error "AutoSar Version Numbers of Emios_Mcl_Ip_Cfg_Defines.h and Emios_Pwm_Ip_CfgDefines.h are different"
+    #endif
 #endif
 /*==================================================================================================
 *                                            CONSTANTS
@@ -104,14 +110,14 @@ extern "C"
 #define EMIOS_CH_23                        ((uint16)23U)
 
 /* Macros that indicate EMIOS channels used by MCL. */
-#ifndef EMIOS_0_CH_0_USED
-    #define EMIOS_0_CH_0_USED
+#ifndef EMIOS_1_CH_23_USED
+    #define EMIOS_1_CH_23_USED
 #else
-    #error "EMIOS_0_CH_0 channel cannot be used by MCL driver. Channel locked by other driver!"
+    #error "EMIOS_1_CH_23 channel cannot be used by MCL driver. Channel locked by other driver!"
 #endif
 
 /* Macros used to save logic MCL EMIOS channel encoding. */
-#define MCL_EMIOS_LOGIC_CH0     (uint16)((0U << 8U) + EMIOS_CH_0)
+#define MCL_EMIOS_LOGIC_CH0     (uint16)((1U << 8U) + EMIOS_CH_23)
 
 #define EMIOS_MCL_IP_DEV_ERROR_DETECT     (STD_OFF)
 

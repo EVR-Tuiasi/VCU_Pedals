@@ -1,7 +1,7 @@
 /*==================================================================================================
 *   Project              : RTD AUTOSAR 4.9
 *   Platform             : CORTEXM
-*   Peripheral           : DMA,CACHE,TRGMUX,LCU,EMIOS,FLEXIO
+*   Peripheral           : Emios Flexio FlexPwm eTpu
 *   Dependencies         : none
 *
 *   Autosar Version      : 4.9.0
@@ -12,7 +12,6 @@
 *
 *   Copyright 2020 - 2026 NXP
 *
-*
 *   NXP Confidential and Proprietary. This software is owned or controlled by NXP and may only be 
 *   used strictly in accordance with the applicable license terms. By expressly 
 *   accepting such terms or by downloading, installing, activating and/or otherwise 
@@ -22,70 +21,74 @@
 *   activate or otherwise use the software.
 ==================================================================================================*/
 
-#ifndef EMIOS_MCL_IP_PBCFG_H
-#define EMIOS_MCL_IP_PBCFG_H
-    /**
-*   @file Emios_Mcl_Ip_BOARD_INITPERIPHERALS_PBcfg.h
+#ifndef ETPU_PWM_IP_CFGDEFINES_H
+#define ETPU_PWM_IP_CFGDEFINES_H
+
+/**
+*   @file       Eptu_Pwm_Ip_CfgDefines.h
 *
-*   @version 7.0.1
-*
-*   @brief   AUTOSAR Mcl - MCL driver header file.
-*   @details
-*
-*   @addtogroup MCL_DRIVER MCL Driver
+*   @addtogroup etpu_pwm_ip ETPU Pwm IPL
 *   @{
 */
+
 #ifdef __cplusplus
-extern "C"
-{
+extern "C"{
 #endif
 
+
 /*==================================================================================================
-*                                        INCLUDE FILES
+*                                          INCLUDE FILES
 * 1) system and project includes
 * 2) needed interfaces from external units
 * 3) internal and external interfaces from this unit
 ==================================================================================================*/
-#include "Emios_Mcl_Ip_Types.h"
+/* Standard Types */
+#include "Std_Types.h"
 
 /*==================================================================================================
-*                               HEADER FILE VERSION INFORMATION
+*                                 SOURCE FILE VERSION INFORMATION
 ==================================================================================================*/
-#define EMIOS_MCL_IP_PBCFG_MODULE_ID                     255
-#define EMIOS_MCL_IP_PBCFG_VENDOR_ID                     43
-#define EMIOS_MCL_IP_PBCFG_AR_RELEASE_MAJOR_VERSION      4
-#define EMIOS_MCL_IP_PBCFG_AR_RELEASE_MINOR_VERSION      9
-#define EMIOS_MCL_IP_PBCFG_AR_RELEASE_REVISION_VERSION   0
-#define EMIOS_MCL_IP_PBCFG_SW_MAJOR_VERSION              7
-#define EMIOS_MCL_IP_PBCFG_SW_MINOR_VERSION              0
-#define EMIOS_MCL_IP_PBCFG_SW_PATCH_VERSION              1
-    /*==================================================================================================
-*                                      FILE VERSION CHECKS
+#define ETPU_PWM_IP_CFGDEFINES_VENDOR_ID                    43
+#define ETPU_PWM_IP_CFGDEFINES_MODULE_ID                    121
+#define ETPU_PWM_IP_CFGDEFINES_AR_RELEASE_MAJOR_VERSION     4
+#define ETPU_PWM_IP_CFGDEFINES_AR_RELEASE_MINOR_VERSION     9
+#define ETPU_PWM_IP_CFGDEFINES_AR_RELEASE_REVISION_VERSION  0
+#define ETPU_PWM_IP_CFGDEFINES_SW_MAJOR_VERSION             7
+#define ETPU_PWM_IP_CFGDEFINES_SW_MINOR_VERSION             0
+#define ETPU_PWM_IP_CFGDEFINES_SW_PATCH_VERSION             1
+
+/*==================================================================================================
+*                                       FILE VERSION CHECKS
 ==================================================================================================*/
-#if (EMIOS_MCL_IP_PBCFG_VENDOR_ID != EMIOS_MCL_IP_TYPES_VENDOR_ID)
-    #error "Emios_Mcl_Ip_PBcfg.h and Emios_Mcl_Ip_Types.h have different vendor ids"
+/* Check if header file and Std_Types.h are of the same AUTOSAR version */
+#ifndef DISABLE_MCAL_INTERMODULE_ASR_CHECK
+    #if ((ETPU_PWM_IP_CFGDEFINES_AR_RELEASE_MAJOR_VERSION != STD_AR_RELEASE_MAJOR_VERSION) || \
+         (ETPU_PWM_IP_CFGDEFINES_AR_RELEASE_MINOR_VERSION != STD_AR_RELEASE_MINOR_VERSION))
+        #error "AUTOSAR version numbers of EMIOS_Pwm_Ip_CfgDefines.h and Std_Types.h are different."
+    #endif
 #endif
 
-/* Check if  header file and Emios_Mcl_Ip_Types.h file are of the same Autosar version */
-#if ((EMIOS_MCL_IP_PBCFG_AR_RELEASE_MAJOR_VERSION != EMIOS_MCL_IP_TYPES_AR_RELEASE_MAJOR_VERSION) || \
-     (EMIOS_MCL_IP_PBCFG_AR_RELEASE_MINOR_VERSION != EMIOS_MCL_IP_TYPES_AR_RELEASE_MINOR_VERSION) || \
-     (EMIOS_MCL_IP_PBCFG_AR_RELEASE_REVISION_VERSION != EMIOS_MCL_IP_TYPES_AR_RELEASE_REVISION_VERSION))
-    #error "AutoSar Version Numbers of Emios_Mcl_Ip_PBcfg.h and Emios_Mcl_Ip_Types.h are different"
-#endif
-
-/* Check if header file and Emios_Mcl_Ip_Types.h file are of the same Software version */
-#if ((EMIOS_MCL_IP_PBCFG_SW_MAJOR_VERSION != EMIOS_MCL_IP_TYPES_SW_MAJOR_VERSION) || \
-     (EMIOS_MCL_IP_PBCFG_SW_MINOR_VERSION != EMIOS_MCL_IP_TYPES_SW_MINOR_VERSION) || \
-     (EMIOS_MCL_IP_PBCFG_SW_PATCH_VERSION != EMIOS_MCL_IP_TYPES_SW_PATCH_VERSION))
-    #error "Software Version Numbers of Emios_Mcl_Ip_PBcfg.h and Emios_Mcl_Ip_Types.h are different"
-#endif
-    /*==================================================================================================
+/*==================================================================================================
 *                                            CONSTANTS
 ==================================================================================================*/
 
 /*==================================================================================================
 *                                       DEFINES AND MACROS
 ==================================================================================================*/
+/** @brief      Enable the Etpu Ip */
+#define ETPU_PWM_IP_USED                            (STD_OFF)
+
+#if (ETPU_PWM_IP_USED == STD_ON)
+
+/** @brief        Macros to indicate eTPU channels used. */
+
+/**
+* @brief        Macros used to enable ISR for eTPU channel
+*
+*/
+
+/** @brief Maximum value of the period */
+#define ETPU_PWM_IP_MAX_PERIOD                      0x007FFFFF
 
 /*==================================================================================================
 *                                              ENUMS
@@ -94,32 +97,35 @@ extern "C"
 /*==================================================================================================
 *                                  STRUCTURES AND OTHER TYPEDEFS
 ==================================================================================================*/
+/**
+ * @brief       Notification function callback type.
+ */
+typedef void (* Etpu_Pwm_Ip_CallbackType)(uint8 param);
+
+/**
+ * @brief       Structure for notification
+ * @details     The structure used to notification
+ */
+typedef struct
+{
+    /** @brief Callback function pointer */
+    Etpu_Pwm_Ip_CallbackType CbFunction;
+    /** @brief Callback function parameter pointer */
+    uint8 CbParameter;
+} Etpu_Pwm_Ip_NotificationType;
 
 /*==================================================================================================
 *                                  GLOBAL VARIABLE DECLARATIONS
 ==================================================================================================*/
-#define MCL_START_SEC_CONFIG_DATA_UNSPECIFIED
-#include "Mcl_MemMap.h"
-
-/* Emios channel configuration */
-extern const Emios_Ip_MasterBusConfigType Emios_Mcl_Ip_1_MasterBusConfig[1U];
-
-/* Emios instance configuration of global parameters */
-extern const Emios_Ip_GlobalConfigType Emios_Ip_1_GlobalConfig;
-
-/* EMIOS configuration structure used for initialization. */
-extern const Emios_Mcl_Ip_ConfigType Emios_Mcl_Ip_1_Config;
-
-#define MCL_STOP_SEC_CONFIG_DATA_UNSPECIFIED
-#include "Mcl_MemMap.h"
 
 /*==================================================================================================
 *                                       FUNCTION PROTOTYPES
 ==================================================================================================*/
-
+#endif /* ETPU_PWM_IP_USED == STD_ON */
 #ifdef __cplusplus
 }
 #endif
 
-#endif
+/** @} */
 
+#endif /* ETPU_PWM_IP_CFGDEFINES_H */

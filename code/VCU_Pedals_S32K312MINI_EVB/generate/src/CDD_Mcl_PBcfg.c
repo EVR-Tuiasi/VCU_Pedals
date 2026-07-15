@@ -118,9 +118,9 @@ const Mcl_EmiosInstanceConfigType Mcl_EmiosInstanceConfig[1U] =
 {
     {
         /** @brief  Hardware EMIOS instace number */
-        (uint8) 0U,
+        (uint8) 1U,
         /** @brief  Address of configuration for EMIOS hardware instance */
-        &Emios_Mcl_Ip_0_Config
+        &Emios_Mcl_Ip_1_Config
     }
 };
 

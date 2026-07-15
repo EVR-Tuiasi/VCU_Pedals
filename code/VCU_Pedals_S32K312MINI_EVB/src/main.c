@@ -21,6 +21,7 @@ extern "C" {
 #include "Dio.h"
 #include "Mcl.h"
 #include "Adc.h"
+#include "Pwm.h"
 #include "CanMessaging.h"
 #include "UartMessaging.h"
 #include "Messaging.h"
@@ -96,6 +97,7 @@ int main(void)
 	Adc_Init(NULL_PTR);
 	Can_43_FLEXCAN_Init(NULL_PTR);
 	CanIf_Init(NULL_PTR);
+	Pwm_Init(NULL_PTR);
 
 	CanMessaging_Init();
 	UartMessaging_Init();
@@ -103,6 +105,7 @@ int main(void)
 
 	while(1){
 		Pedals_Update();
+		Pedals_Test();
 		WriteUartDataAtAddress(Pedals_GetData(ACCEL, SENSOR1, VOLTAGE), &MonitoredValues.PedalsMonitoredValues.AcceleratorSensor1Voltage);
 		WriteUartDataAtAddress(Pedals_GetData(ACCEL, SENSOR2, VOLTAGE), &MonitoredValues.PedalsMonitoredValues.AcceleratorSensor2Voltage);
 		WriteUartDataAtAddress(Pedals_GetData(BRAKE, SENSOR1, VOLTAGE), &MonitoredValues.PedalsMonitoredValues.BrakeSensor1Voltage);

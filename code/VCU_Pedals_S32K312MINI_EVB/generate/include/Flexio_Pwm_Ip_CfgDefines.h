@@ -1,7 +1,7 @@
 /*==================================================================================================
 *   Project              : RTD AUTOSAR 4.9
 *   Platform             : CORTEXM
-*   Peripheral           : DMA,CACHE,TRGMUX,LCU,EMIOS,FLEXIO
+*   Peripheral           : Emios Flexio FlexPwm eTpu
 *   Dependencies         : none
 *
 *   Autosar Version      : 4.9.0
@@ -12,7 +12,6 @@
 *
 *   Copyright 2020 - 2026 NXP
 *
-*
 *   NXP Confidential and Proprietary. This software is owned or controlled by NXP and may only be 
 *   used strictly in accordance with the applicable license terms. By expressly 
 *   accepting such terms or by downloading, installing, activating and/or otherwise 
@@ -22,70 +21,76 @@
 *   activate or otherwise use the software.
 ==================================================================================================*/
 
-#ifndef EMIOS_MCL_IP_PBCFG_H
-#define EMIOS_MCL_IP_PBCFG_H
-    /**
-*   @file Emios_Mcl_Ip_BOARD_INITPERIPHERALS_PBcfg.h
+#ifndef FLEXIO_PWM_IP_CFGDEFINES_H
+#define FLEXIO_PWM_IP_CFGDEFINES_H
+
+/**
+*   @file Flexio_Pwm_Ip_CfgDefines.h
 *
-*   @version 7.0.1
-*
-*   @brief   AUTOSAR Mcl - MCL driver header file.
-*   @details
-*
-*   @addtogroup MCL_DRIVER MCL Driver
+*   @addtogroup flexio_pwm_ip FlexIO Pwm IPL
 *   @{
 */
+
 #ifdef __cplusplus
-extern "C"
-{
+extern "C"{
 #endif
 
+
 /*==================================================================================================
-*                                        INCLUDE FILES
+*                                          INCLUDE FILES
 * 1) system and project includes
 * 2) needed interfaces from external units
 * 3) internal and external interfaces from this unit
 ==================================================================================================*/
-#include "Emios_Mcl_Ip_Types.h"
+#include "Std_Types.h"
 
 /*==================================================================================================
-*                               HEADER FILE VERSION INFORMATION
+*                                 SOURCE FILE VERSION INFORMATION
 ==================================================================================================*/
-#define EMIOS_MCL_IP_PBCFG_MODULE_ID                     255
-#define EMIOS_MCL_IP_PBCFG_VENDOR_ID                     43
-#define EMIOS_MCL_IP_PBCFG_AR_RELEASE_MAJOR_VERSION      4
-#define EMIOS_MCL_IP_PBCFG_AR_RELEASE_MINOR_VERSION      9
-#define EMIOS_MCL_IP_PBCFG_AR_RELEASE_REVISION_VERSION   0
-#define EMIOS_MCL_IP_PBCFG_SW_MAJOR_VERSION              7
-#define EMIOS_MCL_IP_PBCFG_SW_MINOR_VERSION              0
-#define EMIOS_MCL_IP_PBCFG_SW_PATCH_VERSION              1
-    /*==================================================================================================
-*                                      FILE VERSION CHECKS
+#define FLEXIO_PWM_IP_CFGDEFINES_VENDOR_ID                    43
+#define FLEXIO_PWM_IP_CFGDEFINES_AR_RELEASE_MAJOR_VERSION     4
+#define FLEXIO_PWM_IP_CFGDEFINES_AR_RELEASE_MINOR_VERSION     9
+#define FLEXIO_PWM_IP_CFGDEFINES_AR_RELEASE_REVISION_VERSION  0
+#define FLEXIO_PWM_IP_CFGDEFINES_SW_MAJOR_VERSION             7
+#define FLEXIO_PWM_IP_CFGDEFINES_SW_MINOR_VERSION             0
+#define FLEXIO_PWM_IP_CFGDEFINES_SW_PATCH_VERSION             1
+
+/*==================================================================================================
+*                                       FILE VERSION CHECKS
 ==================================================================================================*/
-#if (EMIOS_MCL_IP_PBCFG_VENDOR_ID != EMIOS_MCL_IP_TYPES_VENDOR_ID)
-    #error "Emios_Mcl_Ip_PBcfg.h and Emios_Mcl_Ip_Types.h have different vendor ids"
+/* Check if header file and Std_Types.h are of the same AUTOSAR version */
+#ifndef DISABLE_MCAL_INTERMODULE_ASR_CHECK
+    #if ((FLEXIO_PWM_IP_CFGDEFINES_AR_RELEASE_MAJOR_VERSION != STD_AR_RELEASE_MAJOR_VERSION) || \
+         (FLEXIO_PWM_IP_CFGDEFINES_AR_RELEASE_MINOR_VERSION != STD_AR_RELEASE_MINOR_VERSION))
+        #error "AUTOSAR version numbers of Flexio_Pwm_Ip_CfgDefines.h and Std_Types.h are different."
+    #endif
 #endif
 
-/* Check if  header file and Emios_Mcl_Ip_Types.h file are of the same Autosar version */
-#if ((EMIOS_MCL_IP_PBCFG_AR_RELEASE_MAJOR_VERSION != EMIOS_MCL_IP_TYPES_AR_RELEASE_MAJOR_VERSION) || \
-     (EMIOS_MCL_IP_PBCFG_AR_RELEASE_MINOR_VERSION != EMIOS_MCL_IP_TYPES_AR_RELEASE_MINOR_VERSION) || \
-     (EMIOS_MCL_IP_PBCFG_AR_RELEASE_REVISION_VERSION != EMIOS_MCL_IP_TYPES_AR_RELEASE_REVISION_VERSION))
-    #error "AutoSar Version Numbers of Emios_Mcl_Ip_PBcfg.h and Emios_Mcl_Ip_Types.h are different"
-#endif
-
-/* Check if header file and Emios_Mcl_Ip_Types.h file are of the same Software version */
-#if ((EMIOS_MCL_IP_PBCFG_SW_MAJOR_VERSION != EMIOS_MCL_IP_TYPES_SW_MAJOR_VERSION) || \
-     (EMIOS_MCL_IP_PBCFG_SW_MINOR_VERSION != EMIOS_MCL_IP_TYPES_SW_MINOR_VERSION) || \
-     (EMIOS_MCL_IP_PBCFG_SW_PATCH_VERSION != EMIOS_MCL_IP_TYPES_SW_PATCH_VERSION))
-    #error "Software Version Numbers of Emios_Mcl_Ip_PBcfg.h and Emios_Mcl_Ip_Types.h are different"
-#endif
-    /*==================================================================================================
+/*==================================================================================================
 *                                            CONSTANTS
 ==================================================================================================*/
 
 /*==================================================================================================
 *                                       DEFINES AND MACROS
 ==================================================================================================*/
+/** @brief      Flexio Timer has 8bit pwm low mode */
+#define FLEXIO_PWM_IP_HAS_LOW_MODE              (STD_ON)
+
+/** @brief      Flexio Timer has prescaler */
+#define FLEXIO_PWM_IP_HAS_PRESCALER             (STD_ON)
+
+/** @brief      Flexio pin override value  */
+#define FLEXIO_PWM_IP_HAS_PIN_OVERRIDE          (STD_ON)
+
+
+/**
+* @brief        Macro to indicate that PWM driver can support call IP layer directly or must be using HLD (Autosar mode).
+* @note         In current implementation, this macro is defined equal to STD_ON if EB tresos
+*               tool is used, because EB tresos only supports Autosar mode.
+*               If CT tool is used, this mean PWM driver can support call IP layer directly or
+*               using HLD layer, so this macro can be equal to STD_ON/STD_OFF
+*/
+#define FLEXIO_PWM_IP_AUTOSAR_MODE_IS_USED                (STD_ON)
 
 /*==================================================================================================
 *                                              ENUMS
@@ -98,28 +103,17 @@ extern "C"
 /*==================================================================================================
 *                                  GLOBAL VARIABLE DECLARATIONS
 ==================================================================================================*/
-#define MCL_START_SEC_CONFIG_DATA_UNSPECIFIED
-#include "Mcl_MemMap.h"
-
-/* Emios channel configuration */
-extern const Emios_Ip_MasterBusConfigType Emios_Mcl_Ip_1_MasterBusConfig[1U];
-
-/* Emios instance configuration of global parameters */
-extern const Emios_Ip_GlobalConfigType Emios_Ip_1_GlobalConfig;
-
-/* EMIOS configuration structure used for initialization. */
-extern const Emios_Mcl_Ip_ConfigType Emios_Mcl_Ip_1_Config;
-
-#define MCL_STOP_SEC_CONFIG_DATA_UNSPECIFIED
-#include "Mcl_MemMap.h"
 
 /*==================================================================================================
 *                                       FUNCTION PROTOTYPES
 ==================================================================================================*/
 
+
 #ifdef __cplusplus
 }
 #endif
 
-#endif
+/** @} */
+
+#endif /* FLEXIO_PWM_IP_CFGDEFINES_H */
 

@@ -1,7 +1,7 @@
 /*==================================================================================================
 *   Project              : RTD AUTOSAR 4.9
 *   Platform             : CORTEXM
-*   Peripheral           : DMA,CACHE,TRGMUX,LCU,EMIOS,FLEXIO
+*   Peripheral           : Emios Flexio FlexPwm eTpu
 *   Dependencies         : none
 *
 *   Autosar Version      : 4.9.0
@@ -12,7 +12,6 @@
 *
 *   Copyright 2020 - 2026 NXP
 *
-*
 *   NXP Confidential and Proprietary. This software is owned or controlled by NXP and may only be 
 *   used strictly in accordance with the applicable license terms. By expressly 
 *   accepting such terms or by downloading, installing, activating and/or otherwise 
@@ -22,70 +21,62 @@
 *   activate or otherwise use the software.
 ==================================================================================================*/
 
-#ifndef EMIOS_MCL_IP_PBCFG_H
-#define EMIOS_MCL_IP_PBCFG_H
-    /**
-*   @file Emios_Mcl_Ip_BOARD_INITPERIPHERALS_PBcfg.h
+#ifndef PWM_PB_CFG_H
+#define PWM_PB_CFG_H
+
+/**
+*   @file       Pwm_PBcfg.h
 *
-*   @version 7.0.1
-*
-*   @brief   AUTOSAR Mcl - MCL driver header file.
-*   @details
-*
-*   @addtogroup MCL_DRIVER MCL Driver
+*   @addtogroup pwm_driver Pwm Driver
 *   @{
 */
+
 #ifdef __cplusplus
-extern "C"
-{
+extern "C"{
 #endif
 
+
 /*==================================================================================================
-*                                        INCLUDE FILES
+*                                          INCLUDE FILES
 * 1) system and project includes
 * 2) needed interfaces from external units
 * 3) internal and external interfaces from this unit
 ==================================================================================================*/
-#include "Emios_Mcl_Ip_Types.h"
+#include "Std_Types.h"
 
 /*==================================================================================================
-*                               HEADER FILE VERSION INFORMATION
+*                                 SOURCE FILE VERSION INFORMATION
 ==================================================================================================*/
-#define EMIOS_MCL_IP_PBCFG_MODULE_ID                     255
-#define EMIOS_MCL_IP_PBCFG_VENDOR_ID                     43
-#define EMIOS_MCL_IP_PBCFG_AR_RELEASE_MAJOR_VERSION      4
-#define EMIOS_MCL_IP_PBCFG_AR_RELEASE_MINOR_VERSION      9
-#define EMIOS_MCL_IP_PBCFG_AR_RELEASE_REVISION_VERSION   0
-#define EMIOS_MCL_IP_PBCFG_SW_MAJOR_VERSION              7
-#define EMIOS_MCL_IP_PBCFG_SW_MINOR_VERSION              0
-#define EMIOS_MCL_IP_PBCFG_SW_PATCH_VERSION              1
-    /*==================================================================================================
-*                                      FILE VERSION CHECKS
+#define PWM_PB_CFG_VENDOR_ID                    43
+#define PWM_PB_CFG_AR_RELEASE_MAJOR_VERSION     4
+#define PWM_PB_CFG_AR_RELEASE_MINOR_VERSION     9
+#define PWM_PB_CFG_AR_RELEASE_REVISION_VERSION  0
+#define PWM_PB_CFG_SW_MAJOR_VERSION             7
+#define PWM_PB_CFG_SW_MINOR_VERSION             0
+#define PWM_PB_CFG_SW_PATCH_VERSION             1
+
+/*==================================================================================================
+*                                       FILE VERSION CHECKS
 ==================================================================================================*/
-#if (EMIOS_MCL_IP_PBCFG_VENDOR_ID != EMIOS_MCL_IP_TYPES_VENDOR_ID)
-    #error "Emios_Mcl_Ip_PBcfg.h and Emios_Mcl_Ip_Types.h have different vendor ids"
+#ifndef DISABLE_MCAL_INTERMODULE_ASR_CHECK
+    /* Check if header file and Std_Types.h are of the same AUTOSAR version */
+    #if ((PWM_PB_CFG_AR_RELEASE_MAJOR_VERSION != STD_AR_RELEASE_MAJOR_VERSION) || \
+         (PWM_PB_CFG_AR_RELEASE_MINOR_VERSION != STD_AR_RELEASE_MINOR_VERSION))
+        #error "AUTOSAR version numbers of Pwm_PBcfg.h and Std_Types.h are different."
+    #endif
 #endif
 
-/* Check if  header file and Emios_Mcl_Ip_Types.h file are of the same Autosar version */
-#if ((EMIOS_MCL_IP_PBCFG_AR_RELEASE_MAJOR_VERSION != EMIOS_MCL_IP_TYPES_AR_RELEASE_MAJOR_VERSION) || \
-     (EMIOS_MCL_IP_PBCFG_AR_RELEASE_MINOR_VERSION != EMIOS_MCL_IP_TYPES_AR_RELEASE_MINOR_VERSION) || \
-     (EMIOS_MCL_IP_PBCFG_AR_RELEASE_REVISION_VERSION != EMIOS_MCL_IP_TYPES_AR_RELEASE_REVISION_VERSION))
-    #error "AutoSar Version Numbers of Emios_Mcl_Ip_PBcfg.h and Emios_Mcl_Ip_Types.h are different"
-#endif
-
-/* Check if header file and Emios_Mcl_Ip_Types.h file are of the same Software version */
-#if ((EMIOS_MCL_IP_PBCFG_SW_MAJOR_VERSION != EMIOS_MCL_IP_TYPES_SW_MAJOR_VERSION) || \
-     (EMIOS_MCL_IP_PBCFG_SW_MINOR_VERSION != EMIOS_MCL_IP_TYPES_SW_MINOR_VERSION) || \
-     (EMIOS_MCL_IP_PBCFG_SW_PATCH_VERSION != EMIOS_MCL_IP_TYPES_SW_PATCH_VERSION))
-    #error "Software Version Numbers of Emios_Mcl_Ip_PBcfg.h and Emios_Mcl_Ip_Types.h are different"
-#endif
-    /*==================================================================================================
+/*==================================================================================================
 *                                            CONSTANTS
 ==================================================================================================*/
 
 /*==================================================================================================
 *                                       DEFINES AND MACROS
 ==================================================================================================*/
+/**
+* @brief        Total number of configured PWM channels
+*/
+#define PWM_PB_CFG_CHANNELS_COUNT           ((uint8)3U)
 
 /*==================================================================================================
 *                                              ENUMS
@@ -98,28 +89,29 @@ extern "C"
 /*==================================================================================================
 *                                  GLOBAL VARIABLE DECLARATIONS
 ==================================================================================================*/
-#define MCL_START_SEC_CONFIG_DATA_UNSPECIFIED
-#include "Mcl_MemMap.h"
+#define PWM_START_SEC_CONFIG_DATA_UNSPECIFIED
+#include "Pwm_MemMap.h"
 
-/* Emios channel configuration */
-extern const Emios_Ip_MasterBusConfigType Emios_Mcl_Ip_1_MasterBusConfig[1U];
 
-/* Emios instance configuration of global parameters */
-extern const Emios_Ip_GlobalConfigType Emios_Ip_1_GlobalConfig;
-
-/* EMIOS configuration structure used for initialization. */
-extern const Emios_Mcl_Ip_ConfigType Emios_Mcl_Ip_1_Config;
-
-#define MCL_STOP_SEC_CONFIG_DATA_UNSPECIFIED
-#include "Mcl_MemMap.h"
+#define PWM_STOP_SEC_CONFIG_DATA_UNSPECIFIED
+#include "Pwm_MemMap.h"
 
 /*==================================================================================================
 *                                       FUNCTION PROTOTYPES
 ==================================================================================================*/
+#define PWM_START_SEC_CODE
+#include "Pwm_MemMap.h"
+
+
+#define PWM_STOP_SEC_CODE
+#include "Pwm_MemMap.h"
+
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif
+/** @} */
+
+#endif /* PWM_PB_CFG_H */
 

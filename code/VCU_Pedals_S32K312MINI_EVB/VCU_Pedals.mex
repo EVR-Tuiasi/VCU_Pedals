@@ -191,10 +191,27 @@
                         <pin_feature name="direction" value="OUTPUT"/>
                      </pin_features>
                   </pin>
-                  <pin peripheral="ADC0" signal="adc0_p1" pin_num="8" pin_signal="PTD0"/>
-                  <pin peripheral="ADC0" signal="adc0_p0" pin_num="7" pin_signal="PTD1"/>
-                  <pin peripheral="ADC1" signal="adc1_p1" pin_num="155" pin_signal="PTA13"/>
-                  <pin peripheral="ADC0" signal="adc0_p2" pin_num="172" pin_signal="PTA8"/>
+                  <pin peripheral="ADC0" signal="adc0_p1" pin_num="8" pin_signal="PTD0">
+                     <pin_features>
+                        <pin_feature name="pullEnable" value="enabled"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="ADC0" signal="adc0_p0" pin_num="7" pin_signal="PTD1">
+                     <pin_features>
+                        <pin_feature name="pullEnable" value="enabled"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="ADC1" signal="adc1_p1" pin_num="155" pin_signal="PTA13">
+                     <pin_features>
+                        <pin_feature name="pullEnable" value="enabled"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="ADC0" signal="adc0_p2" pin_num="172" pin_signal="PTA8">
+                     <pin_features>
+                        <pin_feature name="pullSelect" value="pullDown"/>
+                        <pin_feature name="pullEnable" value="enabled"/>
+                     </pin_features>
+                  </pin>
                   <pin peripheral="CAN0" signal="can0_tx" pin_num="100" pin_signal="PTA7"/>
                   <pin peripheral="CAN0" signal="can0_rx" pin_num="102" pin_signal="PTA6"/>
                   <pin peripheral="LPUART6" signal="lpuart6_tx" pin_num="143" pin_signal="PTA16">
@@ -202,7 +219,21 @@
                         <pin_feature name="direction" value="OUTPUT"/>
                      </pin_features>
                   </pin>
-                  <pin peripheral="ADC0" signal="adc0_p7" pin_num="171" pin_signal="PTA9"/>
+                  <pin peripheral="ADC0" signal="adc0_p7" pin_num="171" pin_signal="PTA9">
+                     <pin_features>
+                        <pin_feature name="pullEnable" value="enabled"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="eMIOS_1" signal="emios_1_ch_13_h" pin_num="33" pin_signal="PTA30">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                     </pin_features>
+                  </pin>
+                  <pin peripheral="eMIOS_1" signal="emios_1_ch_14_h" pin_num="39" pin_signal="PTA31">
+                     <pin_features>
+                        <pin_feature name="direction" value="OUTPUT"/>
+                     </pin_features>
+                  </pin>
                </pins>
             </function>
          </functions_list>
@@ -532,6 +563,16 @@
                   <data type="Version">1.0.0</data>
                </feature>
             </dependency>
+            <dependency resourceType="SWComponent" resourceId="platform.driver.pwm" description="Pwm is not found in the toolchain/IDE project. The project will not compile!" problem_level="2" source="Peripherals">
+               <feature name="enabled" evaluation="equal">
+                  <data type="Boolean">true</data>
+               </feature>
+            </dependency>
+            <dependency resourceType="SWComponent" resourceId="platform.driver.pwm" description="An unsupported version of the Pwm in the toolchain/IDE project. Required: ${required_value}, actual: ${actual_value}. The project might not compile correctly." problem_level="1" source="Peripherals">
+               <feature name="version" evaluation="equivalent">
+                  <data type="Version">1.0.0</data>
+               </feature>
+            </dependency>
          </dependencies>
          <generated_project_files>
             <file path="board/Siul2_Port_Ip_Cfg.c" update_enabled="true"/>
@@ -580,13 +621,25 @@
             <file path="generate/include/Emios_Mcl_Ip_Cfg_Defines.h" update_enabled="true"/>
             <file path="generate/include/Emios_Mcl_Ip_Cfg_DeviceRegisters.h" update_enabled="true"/>
             <file path="generate/include/Emios_Mcl_Ip_PBcfg.h" update_enabled="true"/>
+            <file path="generate/include/Emios_Pwm_Ip_Cfg.h" update_enabled="true"/>
+            <file path="generate/include/Emios_Pwm_Ip_CfgDefines.h" update_enabled="true"/>
+            <file path="generate/include/Emios_Pwm_Ip_PBcfg.h" update_enabled="true"/>
+            <file path="generate/include/Etpu_Pwm_Ip_Cfg.h" update_enabled="true"/>
+            <file path="generate/include/Etpu_Pwm_Ip_CfgDefines.h" update_enabled="true"/>
+            <file path="generate/include/Etpu_Pwm_Ip_PBcfg.h" update_enabled="true"/>
             <file path="generate/include/FlexCAN_Ip_Cfg.h" update_enabled="true"/>
             <file path="generate/include/FlexCAN_Ip_CfgDefines.h" update_enabled="true"/>
             <file path="generate/include/FlexCAN_Ip_PBcfg.h" update_enabled="true"/>
+            <file path="generate/include/FlexPwm_Ip_Cfg.h" update_enabled="true"/>
+            <file path="generate/include/FlexPwm_Ip_CfgDefines.h" update_enabled="true"/>
+            <file path="generate/include/FlexPwm_Ip_PBcfg.h" update_enabled="true"/>
             <file path="generate/include/Flexio_Mcl_Ip_Cfg.h" update_enabled="true"/>
             <file path="generate/include/Flexio_Mcl_Ip_Cfg_Defines.h" update_enabled="true"/>
             <file path="generate/include/Flexio_Mcl_Ip_Cfg_DeviceRegisters.h" update_enabled="true"/>
             <file path="generate/include/Flexio_Mcl_Ip_PBcfg.h" update_enabled="true"/>
+            <file path="generate/include/Flexio_Pwm_Ip_Cfg.h" update_enabled="true"/>
+            <file path="generate/include/Flexio_Pwm_Ip_CfgDefines.h" update_enabled="true"/>
+            <file path="generate/include/Flexio_Pwm_Ip_PBcfg.h" update_enabled="true"/>
             <file path="generate/include/Flexio_Uart_Ip_Cfg.h" update_enabled="true"/>
             <file path="generate/include/Flexio_Uart_Ip_CfgDefines.h" update_enabled="true"/>
             <file path="generate/include/Flexio_Uart_Ip_Defines.h" update_enabled="true"/>
@@ -620,6 +673,9 @@
             <file path="generate/include/Power_Ip_Cfg.h" update_enabled="true"/>
             <file path="generate/include/Power_Ip_Cfg_Defines.h" update_enabled="true"/>
             <file path="generate/include/Power_Ip_PBcfg.h" update_enabled="true"/>
+            <file path="generate/include/Pwm_Cfg.h" update_enabled="true"/>
+            <file path="generate/include/Pwm_Ipw_Cfg.h" update_enabled="true"/>
+            <file path="generate/include/Pwm_PBcfg.h" update_enabled="true"/>
             <file path="generate/include/Ram_Ip_Cfg.h" update_enabled="true"/>
             <file path="generate/include/Ram_Ip_Cfg_Defines.h" update_enabled="true"/>
             <file path="generate/include/Ram_Ip_PBcfg.h" update_enabled="true"/>
@@ -658,8 +714,12 @@
             <file path="generate/src/Dma_Ip_Cfg.c" update_enabled="true"/>
             <file path="generate/src/Dma_Ip_PBcfg.c" update_enabled="true"/>
             <file path="generate/src/Emios_Mcl_Ip_PBcfg.c" update_enabled="true"/>
+            <file path="generate/src/Emios_Pwm_Ip_PBcfg.c" update_enabled="true"/>
+            <file path="generate/src/Etpu_Pwm_Ip_PBcfg.c" update_enabled="true"/>
             <file path="generate/src/FlexCAN_Ip_PBcfg.c" update_enabled="true"/>
+            <file path="generate/src/FlexPwm_Ip_PBcfg.c" update_enabled="true"/>
             <file path="generate/src/Flexio_Mcl_Ip_PBcfg.c" update_enabled="true"/>
+            <file path="generate/src/Flexio_Pwm_Ip_PBcfg.c" update_enabled="true"/>
             <file path="generate/src/Flexio_Uart_Ip_PBcfg.c" update_enabled="true"/>
             <file path="generate/src/Igf_Port_Ip_PBcfg.c" update_enabled="true"/>
             <file path="generate/src/IntCtrl_Ip_Cfg.c" update_enabled="true"/>
@@ -676,6 +736,7 @@
             <file path="generate/src/Port_PBcfg.c" update_enabled="true"/>
             <file path="generate/src/Power_Ip_Cfg.c" update_enabled="true"/>
             <file path="generate/src/Power_Ip_PBcfg.c" update_enabled="true"/>
+            <file path="generate/src/Pwm_PBcfg.c" update_enabled="true"/>
             <file path="generate/src/Ram_Ip_Cfg.c" update_enabled="true"/>
             <file path="generate/src/Ram_Ip_PBcfg.c" update_enabled="true"/>
             <file path="generate/src/Sdadc_Ip_PBcfg.c" update_enabled="true"/>
@@ -1470,7 +1531,7 @@
                                     </struct>
                                     <struct name="33">
                                        <setting name="Name" value="PortPin_33"/>
-                                       <setting name="PortPinPue" value="false"/>
+                                       <setting name="PortPinPue" value="true"/>
                                        <setting name="PortPinPus" value="false"/>
                                        <setting name="PortPinSafeMode" value="false"/>
                                        <setting name="PortPinDse" value="false"/>
@@ -1491,7 +1552,7 @@
                                     </struct>
                                     <struct name="34">
                                        <setting name="Name" value="PortPin_34"/>
-                                       <setting name="PortPinPue" value="false"/>
+                                       <setting name="PortPinPue" value="true"/>
                                        <setting name="PortPinPus" value="false"/>
                                        <setting name="PortPinSafeMode" value="false"/>
                                        <setting name="PortPinDse" value="false"/>
@@ -1512,7 +1573,7 @@
                                     </struct>
                                     <struct name="35">
                                        <setting name="Name" value="PortPin_35"/>
-                                       <setting name="PortPinPue" value="false"/>
+                                       <setting name="PortPinPue" value="true"/>
                                        <setting name="PortPinPus" value="false"/>
                                        <setting name="PortPinSafeMode" value="false"/>
                                        <setting name="PortPinDse" value="false"/>
@@ -1533,7 +1594,7 @@
                                     </struct>
                                     <struct name="36">
                                        <setting name="Name" value="PortPin_36"/>
-                                       <setting name="PortPinPue" value="false"/>
+                                       <setting name="PortPinPue" value="true"/>
                                        <setting name="PortPinPus" value="false"/>
                                        <setting name="PortPinSafeMode" value="false"/>
                                        <setting name="PortPinDse" value="false"/>
@@ -1617,7 +1678,7 @@
                                     </struct>
                                     <struct name="40">
                                        <setting name="Name" value="PortPin_40"/>
-                                       <setting name="PortPinPue" value="false"/>
+                                       <setting name="PortPinPue" value="true"/>
                                        <setting name="PortPinPus" value="false"/>
                                        <setting name="PortPinSafeMode" value="false"/>
                                        <setting name="PortPinDse" value="false"/>
@@ -1629,6 +1690,48 @@
                                        <setting name="PortPinInvertControl" value="false"/>
                                        <setting name="PortPinSiul2Instance" value="SIUL2_0"/>
                                        <setting name="PortPinId" value="41"/>
+                                       <setting name="PortPinInitialMode" value="PORT_GPIO_MODE"/>
+                                       <setting name="OBEGroupSelect" value="NO_OBE_GROUP"/>
+                                       <setting name="MscrPdacSlot" value="VIRTUAL_WRAPPER_PDAC0"/>
+                                       <setting name="ImcrPdacSlot" value="VIRTUAL_WRAPPER_PDAC0"/>
+                                       <array name="IGFSettings"/>
+                                       <array name="PortPinEcucPartitionRef"/>
+                                    </struct>
+                                    <struct name="41">
+                                       <setting name="Name" value="PortPin_41"/>
+                                       <setting name="PortPinPue" value="false"/>
+                                       <setting name="PortPinPus" value="false"/>
+                                       <setting name="PortPinSafeMode" value="false"/>
+                                       <setting name="PortPinDse" value="false"/>
+                                       <setting name="PortPinWithReadBack" value="false"/>
+                                       <setting name="PortPinPke" value="false"/>
+                                       <setting name="PortPinIfe" value="false"/>
+                                       <setting name="PortPinDirectionChangeable" value="true"/>
+                                       <setting name="PortPinModeChangeable" value="true"/>
+                                       <setting name="PortPinInvertControl" value="false"/>
+                                       <setting name="PortPinSiul2Instance" value="SIUL2_0"/>
+                                       <setting name="PortPinId" value="42"/>
+                                       <setting name="PortPinInitialMode" value="PORT_GPIO_MODE"/>
+                                       <setting name="OBEGroupSelect" value="NO_OBE_GROUP"/>
+                                       <setting name="MscrPdacSlot" value="VIRTUAL_WRAPPER_PDAC0"/>
+                                       <setting name="ImcrPdacSlot" value="VIRTUAL_WRAPPER_PDAC0"/>
+                                       <array name="IGFSettings"/>
+                                       <array name="PortPinEcucPartitionRef"/>
+                                    </struct>
+                                    <struct name="42">
+                                       <setting name="Name" value="PortPin_42"/>
+                                       <setting name="PortPinPue" value="false"/>
+                                       <setting name="PortPinPus" value="false"/>
+                                       <setting name="PortPinSafeMode" value="false"/>
+                                       <setting name="PortPinDse" value="false"/>
+                                       <setting name="PortPinWithReadBack" value="false"/>
+                                       <setting name="PortPinPke" value="false"/>
+                                       <setting name="PortPinIfe" value="false"/>
+                                       <setting name="PortPinDirectionChangeable" value="true"/>
+                                       <setting name="PortPinModeChangeable" value="true"/>
+                                       <setting name="PortPinInvertControl" value="false"/>
+                                       <setting name="PortPinSiul2Instance" value="SIUL2_0"/>
+                                       <setting name="PortPinId" value="43"/>
                                        <setting name="PortPinInitialMode" value="PORT_GPIO_MODE"/>
                                        <setting name="OBEGroupSelect" value="NO_OBE_GROUP"/>
                                        <setting name="MscrPdacSlot" value="VIRTUAL_WRAPPER_PDAC0"/>
@@ -2873,7 +2976,7 @@
                            <array name="EmiosCommon">
                               <struct name="0">
                                  <setting name="Name" value="EmiosCommon_0"/>
-                                 <setting name="EmiosMclInstances" value="EMIOS_0"/>
+                                 <setting name="EmiosMclInstances" value="EMIOS_1"/>
                                  <setting name="EmiosMclEnableFreezState" value="true"/>
                                  <setting name="EmiosMclEnableGlobalTimeBase" value="true"/>
                                  <setting name="EmiosMclClkDivVal" value="1"/>
@@ -2881,14 +2984,14 @@
                                  <array name="EmiosMclMasterBus">
                                     <struct name="0">
                                        <setting name="Name" value="EMIOS_0_MasteBus0"/>
-                                       <setting name="EmiosMclMasterBusNumber" value="EMIOS_CH_0"/>
-                                       <setting name="EmiosMclMasterBusModeType" value="MC_UP_COUNTER_START"/>
-                                       <setting name="EmiosMclDefaultPeriod" value="1"/>
+                                       <setting name="EmiosMclMasterBusNumber" value="EMIOS_CH_23"/>
+                                       <setting name="EmiosMclMasterBusModeType" value="MCB_UP_COUNTER"/>
+                                       <setting name="EmiosMclDefaultPeriod" value="32768"/>
                                        <setting name="EmiosMclFirstOffsetValue" value="0"/>
                                        <setting name="EmiosMclMasterBusPrescaler" value="DIV_1"/>
                                        <setting name="EmiosMclMasterBusAltPrescaler" value="DIV_1"/>
                                        <setting name="EmiosMclChannelAllowDebugMode" value="true"/>
-                                       <setting name="EmiosMclPwmExclusiveAccess" value="false"/>
+                                       <setting name="EmiosMclPwmExclusiveAccess" value="true"/>
                                     </struct>
                                  </array>
                               </struct>
@@ -4726,6 +4829,190 @@
                            <setting name="AdcSarPowerOnTempSense" value="false"/>
                            <setting name="AdcSarTempSenseVsupply" value="53"/>
                         </struct>
+                     </config_set>
+                  </instance>
+                  <instance name="Pwm" uuid="e5d646c4-6cef-4a9e-ac27-1f0ec309b434" type="Pwm" type_id="Pwm" mode="autosar" enabled="true" comment="" custom_name_enabled="false" editing_lock="false">
+                     <config_set name="Pwm">
+                        <struct name="ConfigTimeSupport">
+                           <setting name="POST_BUILD_VARIANT_USED" value="true"/>
+                           <setting name="IMPLEMENTATION_CONFIG_VARIANT" value="VARIANT-PRE-COMPILE"/>
+                        </struct>
+                        <struct name="PwmGeneral">
+                           <setting name="Name" value="PwmGeneral"/>
+                           <setting name="PwmMultipartitionEnabled" value="false"/>
+                           <setting name="PwmDevErrorDetect" value="true"/>
+                           <setting name="PwmDutycycleUpdatedEndperiod" value="false"/>
+                           <setting name="PwmPeriodUpdatedEndperiod" value="false"/>
+                           <setting name="PwmNotificationSupported" value="false"/>
+                           <setting name="PwmFaultNotificationSupported" value="false"/>
+                           <setting name="PwmDmaRequestSupported" value="false"/>
+                           <setting name="PwmEnableUserModeSupport" value="false"/>
+                           <array name="PwmLowPowerStatesSupport"/>
+                           <array name="PwmPowerStateAsynchTransitionMode"/>
+                           <setting name="PwmEnableDualClockMode" value="false"/>
+                           <setting name="PwmMultiChannelSync" value="false"/>
+                           <setting name="PwmIndex" value="0"/>
+                           <array name="PwmEcucPartitionRef"/>
+                           <array name="PwmKernelEcucPartitionRef"/>
+                           <array name="PwmPowerStateConfig"/>
+                        </struct>
+                        <struct name="PwmChannelConfigSet">
+                           <array name="PwmChannel">
+                              <struct name="0">
+                                 <setting name="Name" value="PwmChannel_0"/>
+                                 <setting name="PwmChannelId" value="0"/>
+                                 <setting name="PwmHwChannel" value="/Pwm/Pwm/PwmChannelConfigSet/PwmEmios_0/PwmEmiosChannels_0"/>
+                                 <array name="PwmChannelClass">
+                                    <setting name="0" value="PWM_FIXED_PERIOD"/>
+                                 </array>
+                                 <setting name="PwmPeriodInTicks" value="true"/>
+                                 <setting name="PwmPeriodDefault" value="32768"/>
+                                 <setting name="PwmDutycycleDefault" value="0"/>
+                                 <setting name="PwmPolarity" value="PWM_LOW"/>
+                                 <setting name="PwmIdleState" value="PWM_HIGH"/>
+                                 <array name="PwmNotification">
+                                    <setting name="0" value="NULL_PTR"/>
+                                 </array>
+                                 <setting name="PwmMcuClockReferencePoint" value="/Mcu/Mcu/McuModuleConfiguration/McuClockSettingConfig_0/McuClockReferencePoint_0"/>
+                                 <array name="PwmChannelEcucPartitionRef"/>
+                              </struct>
+                              <struct name="1">
+                                 <setting name="Name" value="PwmChannel_1"/>
+                                 <setting name="PwmChannelId" value="1"/>
+                                 <setting name="PwmHwChannel" value="/Pwm/Pwm/PwmChannelConfigSet/PwmEmios_0/PwmEmiosChannels_1"/>
+                                 <array name="PwmChannelClass">
+                                    <setting name="0" value="PWM_FIXED_PERIOD"/>
+                                 </array>
+                                 <setting name="PwmPeriodInTicks" value="true"/>
+                                 <setting name="PwmPeriodDefault" value="32768"/>
+                                 <setting name="PwmDutycycleDefault" value="0"/>
+                                 <setting name="PwmPolarity" value="PWM_LOW"/>
+                                 <setting name="PwmIdleState" value="PWM_HIGH"/>
+                                 <array name="PwmNotification"/>
+                                 <setting name="PwmMcuClockReferencePoint" value="/Mcu/Mcu/McuModuleConfiguration/McuClockSettingConfig_0/McuClockReferencePoint_0"/>
+                                 <array name="PwmChannelEcucPartitionRef"/>
+                              </struct>
+                              <struct name="2">
+                                 <setting name="Name" value="PwmChannel_2"/>
+                                 <setting name="PwmChannelId" value="2"/>
+                                 <setting name="PwmHwChannel" value="/Pwm/Pwm/PwmChannelConfigSet/PwmEmios_0/PwmEmiosChannels_2"/>
+                                 <array name="PwmChannelClass">
+                                    <setting name="0" value="PWM_FIXED_PERIOD"/>
+                                 </array>
+                                 <setting name="PwmPeriodInTicks" value="true"/>
+                                 <setting name="PwmPeriodDefault" value="32768"/>
+                                 <setting name="PwmDutycycleDefault" value="0"/>
+                                 <setting name="PwmPolarity" value="PWM_LOW"/>
+                                 <setting name="PwmIdleState" value="PWM_HIGH"/>
+                                 <array name="PwmNotification"/>
+                                 <setting name="PwmMcuClockReferencePoint" value="/Mcu/Mcu/McuModuleConfiguration/McuClockSettingConfig_0/McuClockReferencePoint_0"/>
+                                 <array name="PwmChannelEcucPartitionRef"/>
+                              </struct>
+                           </array>
+                           <array name="PwmEmios">
+                              <struct name="0">
+                                 <setting name="Name" value="PwmEmios_0"/>
+                                 <setting name="PwmHwInstance" value="Emios_1"/>
+                                 <array name="PwmEmiosChannels">
+                                    <struct name="0">
+                                       <setting name="Name" value="PwmEmiosChannels_0"/>
+                                       <setting name="EmiosChId" value="CH_12"/>
+                                       <setting name="EmiosChMode" value="EMIOS_PWM_IP_MODE_OPWMB"/>
+                                       <setting name="EmiosChFlagGeneration" value="Trailing_Edge"/>
+                                       <setting name="EmiosChCounterBus" value="EMIOS_PWM_IP_BUS_A"/>
+                                       <array name="PwmEmiosBusRef">
+                                          <setting name="0" value="/Mcl/Mcl/MclConfig/EmiosCommon_0/EMIOS_0_MasteBus0"/>
+                                       </array>
+                                       <setting name="EmiosChFreeze" value="false"/>
+                                       <setting name="EmiosChOutputDisable" value="EMIOS_PWM_IP_OUTPUT_DISABLE_NONE"/>
+                                       <setting name="EmiosChPrescaler" value="EMIOS_PWM_IP_CLOCK_DIV_2"/>
+                                       <setting name="EmiosChPrescalerAlternate" value="EMIOS_PWM_IP_CLOCK_DIV_2"/>
+                                       <setting name="EmiosChPrescalerSource" value="EMIOS_PWM_IP_PS_SRC_MODULE_CLOCK"/>
+                                       <setting name="EmiosChInterrupt" value="EMIOS_PWM_IP_NOTIFICATION_DISABLED"/>
+                                       <setting name="EmiosChPhaseShift" value="0"/>
+                                       <setting name="EmiosChTrigger" value="0"/>
+                                       <setting name="EmiosChDeadtime" value="0"/>
+                                    </struct>
+                                    <struct name="1">
+                                       <setting name="Name" value="PwmEmiosChannels_1"/>
+                                       <setting name="EmiosChId" value="CH_13"/>
+                                       <setting name="EmiosChMode" value="EMIOS_PWM_IP_MODE_OPWMB"/>
+                                       <setting name="EmiosChFlagGeneration" value="Trailing_Edge"/>
+                                       <setting name="EmiosChCounterBus" value="EMIOS_PWM_IP_BUS_A"/>
+                                       <array name="PwmEmiosBusRef">
+                                          <setting name="0" value="/Mcl/Mcl/MclConfig/EmiosCommon_0/EMIOS_0_MasteBus0"/>
+                                       </array>
+                                       <setting name="EmiosChFreeze" value="false"/>
+                                       <setting name="EmiosChOutputDisable" value="EMIOS_PWM_IP_OUTPUT_DISABLE_NONE"/>
+                                       <setting name="EmiosChPrescaler" value="EMIOS_PWM_IP_CLOCK_DIV_2"/>
+                                       <setting name="EmiosChPrescalerAlternate" value="EMIOS_PWM_IP_CLOCK_DIV_2"/>
+                                       <setting name="EmiosChPrescalerSource" value="EMIOS_PWM_IP_PS_SRC_MODULE_CLOCK"/>
+                                       <setting name="EmiosChInterrupt" value="EMIOS_PWM_IP_NOTIFICATION_DISABLED"/>
+                                       <setting name="EmiosChPhaseShift" value="0"/>
+                                       <setting name="EmiosChTrigger" value="0"/>
+                                       <setting name="EmiosChDeadtime" value="0"/>
+                                    </struct>
+                                    <struct name="2">
+                                       <setting name="Name" value="PwmEmiosChannels_2"/>
+                                       <setting name="EmiosChId" value="CH_14"/>
+                                       <setting name="EmiosChMode" value="EMIOS_PWM_IP_MODE_OPWMB"/>
+                                       <setting name="EmiosChFlagGeneration" value="Trailing_Edge"/>
+                                       <setting name="EmiosChCounterBus" value="EMIOS_PWM_IP_BUS_A"/>
+                                       <array name="PwmEmiosBusRef">
+                                          <setting name="0" value="/Mcl/Mcl/MclConfig/EmiosCommon_0/EMIOS_0_MasteBus0"/>
+                                       </array>
+                                       <setting name="EmiosChFreeze" value="false"/>
+                                       <setting name="EmiosChOutputDisable" value="EMIOS_PWM_IP_OUTPUT_DISABLE_NONE"/>
+                                       <setting name="EmiosChPrescaler" value="EMIOS_PWM_IP_CLOCK_DIV_2"/>
+                                       <setting name="EmiosChPrescalerAlternate" value="EMIOS_PWM_IP_CLOCK_DIV_2"/>
+                                       <setting name="EmiosChPrescalerSource" value="EMIOS_PWM_IP_PS_SRC_MODULE_CLOCK"/>
+                                       <setting name="EmiosChInterrupt" value="EMIOS_PWM_IP_NOTIFICATION_DISABLED"/>
+                                       <setting name="EmiosChPhaseShift" value="0"/>
+                                       <setting name="EmiosChTrigger" value="0"/>
+                                       <setting name="EmiosChDeadtime" value="0"/>
+                                    </struct>
+                                 </array>
+                              </struct>
+                           </array>
+                           <array name="PwmFlexio"/>
+                           <array name="FlexPwm"/>
+                           <array name="PwmEtpu"/>
+                           <setting name="Name" value="PwmChannelConfigSet"/>
+                        </struct>
+                        <struct name="PwmConfigurationOfOptApiServices">
+                           <setting name="Name" value="PwmConfigurationOfOptApiServices"/>
+                           <setting name="PwmDeInitApi" value="true"/>
+                           <setting name="PwmGetOutputState" value="false"/>
+                           <setting name="PwmSetDutyCycle" value="true"/>
+                           <setting name="PwmSetOutputToIdle" value="false"/>
+                           <setting name="PwmSetPeriodAndDuty" value="false"/>
+                           <setting name="PwmVersionInfoApi" value="false"/>
+                           <setting name="PwmGetChannelStateApi" value="false"/>
+                           <setting name="PwmSetDutyCycle_NoUpdate" value="false"/>
+                           <setting name="PwmSetPeriodAndDuty_NoUpdate" value="false"/>
+                           <setting name="PwmSetDutyPhaseShift" value="false"/>
+                           <setting name="PwmSetChannelDeadTime" value="false"/>
+                           <setting name="PwmEmiosFastUpdateApi" value="false"/>
+                           <setting name="PwmEnableMaskOutputs" value="false"/>
+                           <setting name="PwmSetCounterBusApi" value="false"/>
+                           <setting name="PwmSetChannelOutputApi" value="false"/>
+                           <setting name="PwmSetTriggerDelayApi" value="false"/>
+                        </struct>
+                        <struct name="CommonPublishedInformation" quick_selection="Default">
+                           <setting name="Name" value="CommonPublishedInformation"/>
+                           <setting name="ArReleaseMajorVersion" value="4"/>
+                           <setting name="ArReleaseMinorVersion" value="9"/>
+                           <setting name="ArReleaseRevisionVersion" value="0"/>
+                           <setting name="ModuleId" value="121"/>
+                           <setting name="SwMajorVersion" value="7"/>
+                           <setting name="SwMinorVersion" value="0"/>
+                           <setting name="SwPatchVersion" value="1"/>
+                           <array name="VendorApiInfix">
+                              <setting name="0" value=""/>
+                           </array>
+                           <setting name="VendorId" value="43"/>
+                        </struct>
+                        <setting name="Name" value="Pwm"/>
                      </config_set>
                   </instance>
                </instances>

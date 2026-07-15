@@ -1,7 +1,7 @@
 /*==================================================================================================
 *   Project              : RTD AUTOSAR 4.9
 *   Platform             : CORTEXM
-*   Peripheral           : SIUL2
+*   Peripheral           : Emios Flexio FlexPwm eTpu
 *   Dependencies         : none
 *
 *   Autosar Version      : 4.9.0
@@ -21,13 +21,13 @@
 *   activate or otherwise use the software.
 ==================================================================================================*/
 
-#ifndef TSPC_PORT_IP_CFG_H
-#define TSPC_PORT_IP_CFG_H
+#ifndef FLEXPWM_IP_PBCFG_H
+#define FLEXPWM_IP_PBCFG_H
 
 /**
-*   @file    Tspc_Port_Ip_Cfg.h
+*   @file       FlexPwm_Ip_PBcfg.h
 *
-*   @addtogroup Port_CFG
+*   @addtogroup flexpwm_ip FlexPwm IPL
 *   @{
 */
 
@@ -41,62 +41,41 @@ extern "C"{
 * 2) needed interfaces from external units
 * 3) internal and external interfaces from this unit
 ==================================================================================================*/
-#include "Tspc_Port_Ip_Types.h"
-#include "S32K312_TSPC.h"
-#include "Tspc_Port_Ip_PBcfg.h"
+#include "FlexPwm_Ip_Types.h"
+
 /*==================================================================================================
 *                              SOURCE FILE VERSION INFORMATION
 ==================================================================================================*/
-#define TSPC_PORT_IP_VENDOR_ID_CFG_H                       43
-#define TSPC_PORT_IP_AR_RELEASE_MAJOR_VERSION_CFG_H        4
-#define TSPC_PORT_IP_AR_RELEASE_MINOR_VERSION_CFG_H        9
-#define TSPC_PORT_IP_AR_RELEASE_REVISION_VERSION_CFG_H     0
-#define TSPC_PORT_IP_SW_MAJOR_VERSION_CFG_H                7
-#define TSPC_PORT_IP_SW_MINOR_VERSION_CFG_H                0
-#define TSPC_PORT_IP_SW_PATCH_VERSION_CFG_H                1
+#define FLEXPWM_IP_PB_CFG_VENDOR_ID                       43
+#define FLEXPWM_IP_PB_CFG_AR_RELEASE_MAJOR_VERSION        4
+#define FLEXPWM_IP_PB_CFG_AR_RELEASE_MINOR_VERSION        9
+#define FLEXPWM_IP_PB_CFG_AR_RELEASE_REVISION_VERSION     0
+#define FLEXPWM_IP_PB_CFG_SW_MAJOR_VERSION                7
+#define FLEXPWM_IP_PB_CFG_SW_MINOR_VERSION                0
+#define FLEXPWM_IP_PB_CFG_SW_PATCH_VERSION                1
 
 /*==================================================================================================
 *                                     FILE VERSION CHECKS
 ==================================================================================================*/
-/* Check if the files Tspc_Port_Ip_Cfg.h and Tspc_Port_Ip_Types.h are of the same version */
-#if (TSPC_PORT_IP_VENDOR_ID_CFG_H != TSPC_PORT_IP_TYPES_VENDOR_ID_H)
-    #error "Tspc_Port_Ip_Cfg.h and Tspc_Port_Ip_Types.h have different vendor ids"
+/* Check if header file and FlexPwm_Ip_Types header file are of the same vendor */
+#if (FLEXPWM_IP_PB_CFG_VENDOR_ID != FLEXPWM_IP_TYPES_VENDOR_ID)
+    #error "Vendor IDs of FlexPwm_Ip_PBcfg.h and FlexPwm_Ip_Types.h are different."
 #endif
 
-/* Check if Tspc_Port_Ip_Cfg.h and Tspc_Port_Ip_Types.h are of the same Autosar version */
-#if ((TSPC_PORT_IP_AR_RELEASE_MAJOR_VERSION_CFG_H    != TSPC_PORT_IP_TYPES_AR_RELEASE_MAJOR_VERSION_H) || \
-     (TSPC_PORT_IP_AR_RELEASE_MINOR_VERSION_CFG_H    != TSPC_PORT_IP_TYPES_AR_RELEASE_MINOR_VERSION_H) || \
-     (TSPC_PORT_IP_AR_RELEASE_REVISION_VERSION_CFG_H != TSPC_PORT_IP_TYPES_AR_RELEASE_REVISION_VERSION_H) \
-    )
-    #error "AutoSar Version Numbers of Tspc_Port_Ip_Cfg.h and Tspc_Port_Ip_Types.h are different"
+/* Check if header file and FlexPwm_Ip_Types header file are of the same AUTOSAR version */
+#if ((FLEXPWM_IP_PB_CFG_AR_RELEASE_MAJOR_VERSION    != FLEXPWM_IP_TYPES_AR_RELEASE_MAJOR_VERSION) || \
+     (FLEXPWM_IP_PB_CFG_AR_RELEASE_MINOR_VERSION    != FLEXPWM_IP_TYPES_AR_RELEASE_MINOR_VERSION) || \
+     (FLEXPWM_IP_PB_CFG_AR_RELEASE_REVISION_VERSION != FLEXPWM_IP_TYPES_AR_RELEASE_REVISION_VERSION))
+    #error "AUTOSAR version numbers of FlexPwm_Ip_PBcfg.h and FlexPwm_Ip_Types.h are different."
 #endif
 
-/* Check if Tspc_Port_Ip_Cfg.h and Tspc_Port_Ip_Types.h are of the same Software version */
-#if ((TSPC_PORT_IP_SW_MAJOR_VERSION_CFG_H != TSPC_PORT_IP_TYPES_SW_MAJOR_VERSION_H) || \
-     (TSPC_PORT_IP_SW_MINOR_VERSION_CFG_H != TSPC_PORT_IP_TYPES_SW_MINOR_VERSION_H) || \
-     (TSPC_PORT_IP_SW_PATCH_VERSION_CFG_H != TSPC_PORT_IP_TYPES_SW_PATCH_VERSION_H)    \
-    )
-    #error "Software Version Numbers of Tspc_Port_Ip_Cfg.h and Tspc_Port_Ip_Types.h are different"
+/* Check if header file and FlexPwm_Ip_Types header file are of the same software version */
+#if ((FLEXPWM_IP_PB_CFG_SW_MAJOR_VERSION != FLEXPWM_IP_TYPES_SW_MAJOR_VERSION) || \
+     (FLEXPWM_IP_PB_CFG_SW_MINOR_VERSION != FLEXPWM_IP_TYPES_SW_MINOR_VERSION) || \
+     (FLEXPWM_IP_PB_CFG_SW_PATCH_VERSION != FLEXPWM_IP_TYPES_SW_PATCH_VERSION))
+    #error "Software version numbers of FlexPwm_Ip_PBcfg.h and FlexPwm_Ip_Types.h are different."
 #endif
 
-/* Check if the files Tspc_Port_Ip_Cfg.h and Tspc_Port_Ip_PBcfg.h are of the same version */
-#if (TSPC_PORT_IP_VENDOR_ID_CFG_H != TSPC_PORT_IP_VENDOR_ID_PBCFG_H)
-    #error "Tspc_Port_Ip_Cfg.h and Tspc_Port_Ip_PBcfg.h have different vendor IDs"
-#endif
-/* Check if the files Tspc_Port_Ip_Cfg.h and Tspc_Port_Ip_PBcfg.h are of the same Autosar version */
-#if ((TSPC_PORT_IP_AR_RELEASE_MAJOR_VERSION_CFG_H != TSPC_PORT_IP_AR_RELEASE_MAJOR_VERSION_PBCFG_H) ||   \
-     (TSPC_PORT_IP_AR_RELEASE_MINOR_VERSION_CFG_H != TSPC_PORT_IP_AR_RELEASE_MINOR_VERSION_PBCFG_H) ||   \
-     (TSPC_PORT_IP_AR_RELEASE_REVISION_VERSION_CFG_H != TSPC_PORT_IP_AR_RELEASE_REVISION_VERSION_PBCFG_H) \
-    )
-    #error "AutoSar Version Numbers of Tspc_Port_Ip_Cfg.h and Tspc_Port_Ip_PBcfg.h are different"
-#endif
-/* Check if the files Tspc_Port_Ip_Cfg.h and Tspc_Port_Ip_PBcfg.h are of the same software version */
-#if ((TSPC_PORT_IP_SW_MAJOR_VERSION_CFG_H != TSPC_PORT_IP_SW_MAJOR_VERSION_PBCFG_H) || \
-     (TSPC_PORT_IP_SW_MINOR_VERSION_CFG_H != TSPC_PORT_IP_SW_MINOR_VERSION_PBCFG_H) || \
-     (TSPC_PORT_IP_SW_PATCH_VERSION_CFG_H != TSPC_PORT_IP_SW_PATCH_VERSION_PBCFG_H)     \
-    )
-    #error "Software Version Numbers of Tspc_Port_Ip_Cfg.h and Tspc_Port_Ip_PBcfg.h are different"
-#endif
 /*==================================================================================================
 *                                          CONSTANTS
 ==================================================================================================*/
@@ -104,19 +83,6 @@ extern "C"{
 /*==================================================================================================
 *                                      DEFINES AND MACROS
 ==================================================================================================*/
-/* Pre-processor switch to enable/disable Touch Sense support */
-#define FEATURE_TSPC_PORT_IP_SUPPORT      (STD_OFF)
-
-/*! @brief User number of configured pins */
-#define NUM_OF_OBE_GROUP_CONFIG 43
-
-#define PORT_START_SEC_CONFIG_DATA_UNSPECIFIED
-#include "Port_MemMap.h"
-
-TSPC_PORT_CONFIG_PB
-
-#define PORT_STOP_SEC_CONFIG_DATA_UNSPECIFIED
-#include "Port_MemMap.h"
 
 /*==================================================================================================
 *                                             ENUMS
@@ -129,11 +95,18 @@ TSPC_PORT_CONFIG_PB
 /*==================================================================================================
 *                                GLOBAL VARIABLE DECLARATIONS
 ==================================================================================================*/
+#ifndef FLEXPWM_IP_PRECOMPILE_SUPPORT
+#define PWM_START_SEC_CONFIG_DATA_UNSPECIFIED
+#include "Pwm_MemMap.h"
+
+
+#define PWM_STOP_SEC_CONFIG_DATA_UNSPECIFIED
+#include "Pwm_MemMap.h"
+#endif  /* FLEXPWM_IP_PRECOMPILE_SUPPORT */
 
 /*==================================================================================================
-*                                    FUNCTION PROTOTYPES
+*                                       FUNCTION PROTOTYPES
 ==================================================================================================*/
-
 
 #ifdef __cplusplus
 }
@@ -141,4 +114,5 @@ TSPC_PORT_CONFIG_PB
 
 /** @} */
 
-#endif /* TSPC_PORT_IP_CFG_H */
+#endif /* FLEXPWM_IP_PBCFG_H */
+
