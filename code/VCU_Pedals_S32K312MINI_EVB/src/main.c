@@ -103,6 +103,7 @@ int main(void)
 	UartMessaging_Init();
 	Pedals_Init();
 
+	volatile uint64_t i;
 	while(1){
 		Pedals_Update();
 		Pedals_Test();
@@ -138,6 +139,8 @@ int main(void)
 		WriteCanDataAtAddress(Pedals_GetPressure(BARS), &MonitoredValues.PedalsMonitoredValues.PressureSensorBars);
 
 		CanMessaging_Update();
+		i=2000000;
+		while(i--);
 	}
 }
 

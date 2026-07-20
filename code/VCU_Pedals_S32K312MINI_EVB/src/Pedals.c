@@ -192,8 +192,6 @@ void Pedals_Update(void){
 
 	Adc_ReadGroup(AdcGroup_0, buffer0);
 	Adc_ReadGroup(AdcGroup_1, buffer1);
-	while(i--);
-	i = 50000;
 
 	erori_pedale.Accel_Implausibility = 0;
 	erori_pedale.Accel_Sensor1_OutOfRangeOutput = 0;
