@@ -2196,6 +2196,10 @@
                                        <setting name="Name" value="LPUART_2"/>
                                        <setting name="McuClockFrequencySelect" value="AIPS_SLOW_CLK"/>
                                     </struct>
+                                    <struct name="6">
+                                       <setting name="Name" value="pit0"/>
+                                       <setting name="McuClockFrequencySelect" value="AIPS_SLOW_CLK"/>
+                                    </struct>
                                  </array>
                               </struct>
                            </array>
@@ -5083,7 +5087,7 @@
                         <setting name="Name" value="Gpt"/>
                         <struct name="ConfigTimeSupport">
                            <setting name="POST_BUILD_VARIANT_USED" value="false"/>
-                           <setting name="IMPLEMENTATION_CONFIG_VARIANT" value="VARIANT-POST-BUILD"/>
+                           <setting name="IMPLEMENTATION_CONFIG_VARIANT" value="VARIANT-PRE-COMPILE"/>
                         </struct>
                         <struct name="GptChannelConfigSet">
                            <setting name="Name" value="GptChannelConfigSet"/>
@@ -5349,7 +5353,7 @@
                            <array name="GptClockReferencePoint">
                               <struct name="0">
                                  <setting name="Name" value="GptClockReferencePoint_0"/>
-                                 <setting name="GptClockReference" value="/Mcu/Mcu/McuModuleConfiguration/McuClockSettingConfig_0/McuClockReferencePoint_0"/>
+                                 <setting name="GptClockReference" value="/Mcu/Mcu/McuModuleConfiguration/McuClockSettingConfig_0/pit0"/>
                               </struct>
                            </array>
                         </struct>

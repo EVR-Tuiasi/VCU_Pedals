@@ -105,6 +105,8 @@ int main(void)
 	UartMessaging_Init();
 	Pedals_Init();
 
+	CanMessaging_Test();
+
 	volatile uint64_t i;
 	while(1){
 		Pedals_Update();
