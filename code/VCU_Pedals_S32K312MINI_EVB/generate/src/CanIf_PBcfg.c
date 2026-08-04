@@ -91,7 +91,7 @@ static const CanIf_TxPduType CanIf_TxPdu[12U] =
         /* .CanIfCtrlId */
         (uint8)0U,
         /* .UserTxConfirmation */
-        NULL_PTR
+        Can_Transmit_Interrupt_INVERTOR_STANGA
     },
     {
         /* .PduIdType */
@@ -105,7 +105,7 @@ static const CanIf_TxPduType CanIf_TxPdu[12U] =
         /* .CanIfCtrlId */
         (uint8)0U,
         /* .UserTxConfirmation */
-        NULL_PTR
+        Can_Transmit_Interrupt_INVERTOR_DREAPTA
     },
     {
         /* .PduIdType */
@@ -119,7 +119,7 @@ static const CanIf_TxPduType CanIf_TxPdu[12U] =
         /* .CanIfCtrlId */
         (uint8)0U,
         /* .UserTxConfirmation */
-        NULL_PTR
+        Can_Transmit_Interrupt_INVERTOARE
     },
     {
         /* .PduIdType */
@@ -133,7 +133,7 @@ static const CanIf_TxPduType CanIf_TxPdu[12U] =
         /* .CanIfCtrlId */
         (uint8)0U,
         /* .UserTxConfirmation */
-        NULL_PTR
+        Can_Transmit_Interrupt_BORD
     },
     {
         /* .PduIdType */
@@ -147,7 +147,7 @@ static const CanIf_TxPduType CanIf_TxPdu[12U] =
         /* .CanIfCtrlId */
         (uint8)0U,
         /* .UserTxConfirmation */
-        NULL_PTR
+        Can_Transmit_Interrupt_ACCELERATIE
     },
     {
         /* .PduIdType */
@@ -161,7 +161,7 @@ static const CanIf_TxPduType CanIf_TxPdu[12U] =
         /* .CanIfCtrlId */
         (uint8)0U,
         /* .UserTxConfirmation */
-        NULL_PTR
+        Can_Transmit_Interrupt_FRANA
     },
     {
         /* .PduIdType */
@@ -175,7 +175,7 @@ static const CanIf_TxPduType CanIf_TxPdu[12U] =
         /* .CanIfCtrlId */
         (uint8)0U,
         /* .UserTxConfirmation */
-        NULL_PTR
+        Can_Transmit_Interrupt_BATERIE
     },
     {
         /* .PduIdType */
@@ -189,7 +189,7 @@ static const CanIf_TxPduType CanIf_TxPdu[12U] =
         /* .CanIfCtrlId */
         (uint8)0U,
         /* .UserTxConfirmation */
-        NULL_PTR
+        Can_Transmit_Interrupt_BATERIE_TENSIUNI_CELULE
     },
     {
         /* .PduIdType */
@@ -203,7 +203,7 @@ static const CanIf_TxPduType CanIf_TxPdu[12U] =
         /* .CanIfCtrlId */
         (uint8)0U,
         /* .UserTxConfirmation */
-        NULL_PTR
+        Can_Transmit_Interrupt_BATERIE_TEMPERATURI_CELULE
     },
     {
         /* .PduIdType */
@@ -217,7 +217,7 @@ static const CanIf_TxPduType CanIf_TxPdu[12U] =
         /* .CanIfCtrlId */
         (uint8)0U,
         /* .UserTxConfirmation */
-        NULL_PTR
+        Can_Transmit_Interrupt_BATERIE_2
     },
     {
         /* .PduIdType */
@@ -231,7 +231,7 @@ static const CanIf_TxPduType CanIf_TxPdu[12U] =
         /* .CanIfCtrlId */
         (uint8)0U,
         /* .UserTxConfirmation */
-        NULL_PTR
+        Can_Transmit_Interrupt_BATERIE_CHARGER
     },
     {
         /* .PduIdType */
@@ -245,7 +245,7 @@ static const CanIf_TxPduType CanIf_TxPdu[12U] =
         /* .CanIfCtrlId */
         (uint8)0U,
         /* .UserTxConfirmation */
-        NULL_PTR
+        Can_Transmit_Interrupt_COMUNICATII
     }
 };
 

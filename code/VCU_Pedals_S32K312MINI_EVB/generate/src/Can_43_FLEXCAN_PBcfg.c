@@ -1187,11 +1187,11 @@ static const Can_43_FLEXCAN_BaudrateConfigType Can_aBaudrateConfig_Ctrl0[1U]=
         (boolean)FALSE,
         /*Nominal Bit Rate - Can_TimeSegmentType Can_NominalBitRate*/
         {
-            (uint8)2U,
-            (uint8)5U,
-            (uint8)5U,
+            (uint8)6U,
+            (uint8)3U,
+            (uint8)3U,
             /* BaudratePrescaler -Can_u16Prescaler  */
-            (uint16)11U,
+            (uint16)2U,
         #if (CAN_43_FLEXCAN_DUAL_CLOCK_MODE == STD_ON)
             /* Alternative Baudrate Prescaler  Can_u16PrescalerAlternate*/
             (uint16)9U,
