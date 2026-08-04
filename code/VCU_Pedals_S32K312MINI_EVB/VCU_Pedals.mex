@@ -2786,6 +2786,13 @@
                                     <setting name="IsrPriority" value="0"/>
                                     <setting name="IsrHandler" value="Adc_Sar_1_Isr"/>
                                  </struct>
+                                 <struct name="8">
+                                    <setting name="Name" value="PlatformIsrConfig_8"/>
+                                    <setting name="IsrName" value="PIT0_IRQn"/>
+                                    <setting name="IsrEnabled" value="true"/>
+                                    <setting name="IsrPriority" value="0"/>
+                                    <setting name="IsrHandler" value="PIT_0_ISR"/>
+                                 </struct>
                               </array>
                               <array name="PlatformNvicEcucPartitionRef"/>
                            </struct>

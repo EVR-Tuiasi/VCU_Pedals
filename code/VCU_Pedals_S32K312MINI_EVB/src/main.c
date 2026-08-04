@@ -22,6 +22,7 @@ extern "C" {
 #include "Mcl.h"
 #include "Adc.h"
 #include "Pwm.h"
+#include "Gpt.h"
 #include "CanMessaging.h"
 #include "UartMessaging.h"
 #include "Messaging.h"
@@ -98,6 +99,7 @@ int main(void)
 	Can_43_FLEXCAN_Init(NULL_PTR);
 	CanIf_Init(NULL_PTR);
 	Pwm_Init(NULL_PTR);
+	Gpt_Init(NULL_PTR);
 
 	CanMessaging_Init();
 	UartMessaging_Init();
