@@ -139,7 +139,7 @@ static const CanIf_TxPduType CanIf_TxPdu[12U] =
         /* .PduIdType */
         (uint8)4U,
         /* .CanId */
-        (Can_IdType)816U,
+        (Can_IdType)256U,
         /* .CanFrameType */
         CANIF_EXTENDED_CAN,
         /* .Can_HwHandleType */
@@ -153,7 +153,7 @@ static const CanIf_TxPduType CanIf_TxPdu[12U] =
         /* .PduIdType */
         (uint8)5U,
         /* .CanId */
-        (Can_IdType)817U,
+        (Can_IdType)257U,
         /* .CanFrameType */
         CANIF_EXTENDED_CAN,
         /* .Can_HwHandleType */

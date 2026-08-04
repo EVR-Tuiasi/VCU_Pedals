@@ -250,7 +250,7 @@ static const Can_43_FLEXCAN_HwFilterType Can_aHwFilter_Object4[1U]=
 {
     /* ID Filter Element_0 of Rx MB with EXTENDED Id */
     {
-        (uint32)0x00000330U,
+        (uint32)0x00000100U,
         (uint32)0xdfffffffU
     }
 };
@@ -261,7 +261,7 @@ static const Can_43_FLEXCAN_HwFilterType Can_aHwFilter_Object5[1U]=
 {
     /* ID Filter Element_0 of Rx MB with EXTENDED Id */
     {
-        (uint32)0x00000331U,
+        (uint32)0x00000101U,
         (uint32)0xdfffffffU
     }
 };
