@@ -27,6 +27,8 @@ extern "C"{
 ==================================================================================================*/
 #define MAX_VOLTAGE 16383U //3.3 V pt adc de 14 biti
 #define MAX_PWM_DUTY_CYCLE 32768U
+#define ADC_PEDALS_SENSORS_GROUP AdcGroup_0
+#define ADC_PRESSURE_SENSORS_GROUP AdcGroup_1
 
 /*==================================================================================================
 *                                      LOCAL VARIABLES
@@ -62,8 +64,8 @@ static uint8_t marja_implausibility = 10;
 *                                       GLOBAL FUNCTIONS
 ==================================================================================================*/
 void Pedals_Init(void){
-	Adc_SetupResultBuffer(AdcGroup_0, buffer0);
-	Adc_SetupResultBuffer(AdcGroup_1, buffer1);
+	Adc_SetupResultBuffer(ADC_PEDALS_SENSORS_GROUP, buffer0);
+	Adc_SetupResultBuffer(ADC_PRESSURE_SENSORS_GROUP, buffer1);
 }
 void Pedals_Test(void){
 	if(erori_pedale.Accel_Implausibility || erori_pedale.Accel_Sensor1_OutOfRangeOutput || erori_pedale.Accel_Sensor1_ShortToGnd || erori_pedale.Accel_Sensor1_ShortToVcc || erori_pedale.Accel_Sensor2_OutOfRangeOutput || erori_pedale.Accel_Sensor2_ShortToGnd || erori_pedale.Accel_Sensor2_ShortToVcc || erori_pedale.Brake_Implausibility || erori_pedale.Brake_Sensor1_OutOfRangeOutput || erori_pedale.Brake_Sensor1_ShortToGnd || erori_pedale.Brake_Sensor1_ShortToVcc || erori_pedale.Brake_Sensor2_OutOfRangeOutput || erori_pedale.Brake_Sensor2_ShortToGnd || erori_pedale.Brake_Sensor2_ShortToVcc)
@@ -184,14 +186,14 @@ void Pedals_Update(void){
 
 	volatile uint32_t i = 50000;
 
-	Adc_StartGroupConversion(AdcGroup_0);
-	Adc_StartGroupConversion(AdcGroup_1);
+	Adc_StartGroupConversion(ADC_PEDALS_SENSORS_GROUP);
+	Adc_StartGroupConversion(ADC_PRESSURE_SENSORS_GROUP);
 
-	while(Adc_GetGroupStatus(AdcGroup_0) == ADC_BUSY);
-	while(Adc_GetGroupStatus(AdcGroup_1) == ADC_BUSY);
+	while(Adc_GetGroupStatus(ADC_PEDALS_SENSORS_GROUP) == ADC_BUSY);
+	while(Adc_GetGroupStatus(ADC_PRESSURE_SENSORS_GROUP) == ADC_BUSY);
 
-	Adc_ReadGroup(AdcGroup_0, buffer0);
-	Adc_ReadGroup(AdcGroup_1, buffer1);
+	Adc_ReadGroup(ADC_PEDALS_SENSORS_GROUP, buffer0);
+	Adc_ReadGroup(ADC_PRESSURE_SENSORS_GROUP, buffer1);
 
 	erori_pedale.Accel_Implausibility = 0;
 	erori_pedale.Accel_Sensor1_OutOfRangeOutput = 0;
