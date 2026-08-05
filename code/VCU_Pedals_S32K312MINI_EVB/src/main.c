@@ -87,7 +87,7 @@ int main(void)
 	Gpt_Init(NULL_PTR);
 
 	CanMessaging_Init();
-	//UartMessaging_Init();
+	UartMessaging_Init();
 	Pedals_Init();
 
 	while(1){

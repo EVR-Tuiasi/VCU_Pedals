@@ -37,13 +37,13 @@ static Adc_ValueGroupType buffer0[4];
 static Adc_ValueGroupType buffer1[1];
 static PedalsData_t date_pedale = {0};
 volatile PedalsErrors_t erori_pedale = {0};
-static SensorLimits acc1 = {3660, 6450};
-static SensorLimits acc2 = {4680, 2620};
-static SensorLimits brake1 = {3660, 6450};
-static SensorLimits brake2 = {4680, 2620};
-static uint8_t marja_eroare = 200;
-static uint16_t marja_limite = 1310; //1310 - 0.4V pt adc de 14 biti;
-static uint8_t marja_implausibility = 10;
+static SensorLimits acc1 = {10813+200, 13434-200};
+static SensorLimits acc2 = {3768-100, 2129+100};
+static SensorLimits brake1 = {12287, 8847+200};
+static SensorLimits brake2 = {5603-200, 2851+200};
+static uint16_t marja_eroare = 950;
+static uint16_t marja_limite = 490; //1310 - 0.4V pt adc de 14 biti; 490 - 0.15V pt adc de 14 biti
+static uint16_t marja_implausibility = 25;
 
 /*==================================================================================================
 *                                      GLOBAL CONSTANTS
@@ -183,9 +183,6 @@ uint32_t Pedals_GetPressure(BrakePressure_t ValueType){
 }
 
 void Pedals_Update(void){
-
-	volatile uint32_t i = 50000;
-
 	Adc_StartGroupConversion(ADC_PEDALS_SENSORS_GROUP);
 	Adc_StartGroupConversion(ADC_PRESSURE_SENSORS_GROUP);
 
@@ -212,74 +209,111 @@ void Pedals_Update(void){
 
 	// Senzor 1 Acceleratie
 	date_pedale.AcceleratorSensor1Voltage = buffer0[0];
-	if((buffer0[0] >= (acc1.start_valid - marja_eroare)) && (buffer0[0] <= acc1.start_valid))
+	if((buffer0[0] >= (acc1.start_valid - marja_eroare)) && (buffer0[0] <= acc1.start_valid)){
 		date_pedale.AcceleratorSensor1TravelPercentage = 0U;
-	else{
-		if((buffer0[0] >= acc1.end_valid) && (buffer0[0] <= (acc1.end_valid + marja_eroare)))
-			date_pedale.AcceleratorSensor1TravelPercentage = 100U;
-		else
-			date_pedale.AcceleratorSensor1TravelPercentage = 100U*(buffer0[0]-acc1.start_valid)/(acc1.end_valid-acc1.start_valid);
 	}
-	if((buffer0[0] > (acc1.end_valid + marja_eroare)) || (buffer0[0] < (acc1.start_valid - marja_eroare)))
+	else{
+		if((buffer0[0] >= acc1.end_valid) && (buffer0[0] <= (acc1.end_valid + marja_eroare))){
+			date_pedale.AcceleratorSensor1TravelPercentage = 100U;
+		}
+		else{
+			date_pedale.AcceleratorSensor1TravelPercentage = 100U*(buffer0[0]-acc1.start_valid)/(acc1.end_valid-acc1.start_valid);
+		}
+	}
+	if((buffer0[0] > (acc1.end_valid + marja_eroare)) || (buffer0[0] < (acc1.start_valid - marja_eroare))){
 		erori_pedale.Accel_Sensor1_OutOfRangeOutput = 1;
-	if(buffer0[0] < marja_limite)
+		date_pedale.AcceleratorSensor1TravelPercentage = 0U;
+	}
+	if(buffer0[0] < marja_limite){
 		erori_pedale.Accel_Sensor1_ShortToGnd = 1;
-	if(buffer0[0] > (MAX_VOLTAGE - marja_limite))
+		date_pedale.AcceleratorSensor1TravelPercentage = 0U;
+	}
+	if(buffer0[0] > (MAX_VOLTAGE - marja_limite)){
 		erori_pedale.Accel_Sensor1_ShortToVcc = 1;
+		date_pedale.AcceleratorSensor1TravelPercentage = 0U;
+	}
 
 	// Senzor 2 Acceleratie
 	date_pedale.AcceleratorSensor2Voltage = buffer0[1];
-	if((buffer0[1] <= (acc2.start_valid + marja_eroare)) && (buffer0[1] >= acc2.start_valid))
+	if((buffer0[1] <= (acc2.start_valid + marja_eroare)) && (buffer0[1] >= acc2.start_valid)){
 		date_pedale.AcceleratorSensor2TravelPercentage = 0U;
-	else{
-		if((buffer0[1] <= acc2.end_valid) && (buffer0[1] >= (acc2.end_valid - marja_eroare)))
-			date_pedale.AcceleratorSensor2TravelPercentage = 100U;
-		else
-			date_pedale.AcceleratorSensor2TravelPercentage = 100U*(acc2.start_valid-buffer0[1])/(acc2.start_valid-acc2.end_valid);
 	}
-	if((buffer0[1] < (acc2.end_valid - marja_eroare)) || (buffer0[1] > (acc2.start_valid + marja_eroare)))
+	else{
+		if((buffer0[1] <= acc2.end_valid) && (buffer0[1] >= (acc2.end_valid - marja_eroare))){
+			date_pedale.AcceleratorSensor2TravelPercentage = 100U;
+		}
+		else{
+			date_pedale.AcceleratorSensor2TravelPercentage = 100U*(acc2.start_valid-buffer0[1])/(acc2.start_valid-acc2.end_valid);
+		}
+	}
+	if((buffer0[1] < (acc2.end_valid - marja_eroare)) || (buffer0[1] > (acc2.start_valid + marja_eroare))){
 		erori_pedale.Accel_Sensor2_OutOfRangeOutput = 1;
-	if(buffer0[1] < marja_limite)
+		date_pedale.AcceleratorSensor2TravelPercentage = 0U;
+	}
+	if(buffer0[1] < marja_limite){
 		erori_pedale.Accel_Sensor2_ShortToGnd = 1;
-	if(buffer0[1] > (MAX_VOLTAGE - marja_limite))
+		date_pedale.AcceleratorSensor2TravelPercentage = 0U;
+	}
+	if(buffer0[1] > (MAX_VOLTAGE - marja_limite)){
 		erori_pedale.Accel_Sensor2_ShortToVcc = 1;
+		date_pedale.AcceleratorSensor2TravelPercentage = 0U;
+	}
 
-	if((date_pedale.AcceleratorSensor1TravelPercentage - date_pedale.AcceleratorSensor2TravelPercentage >= marja_implausibility) || (date_pedale.AcceleratorSensor2TravelPercentage - date_pedale.AcceleratorSensor1TravelPercentage >= marja_implausibility))
+	if((date_pedale.AcceleratorSensor1TravelPercentage - date_pedale.AcceleratorSensor2TravelPercentage >= marja_implausibility) || (date_pedale.AcceleratorSensor2TravelPercentage - date_pedale.AcceleratorSensor1TravelPercentage >= marja_implausibility)){
 		erori_pedale.Accel_Implausibility = 1;
+	}
 
 	// Senzor 1 Frana
 	date_pedale.BrakeSensor1Voltage = buffer0[2];
-	if((buffer0[2] >= (brake1.start_valid - marja_eroare)) && (buffer0[2] <= brake1.start_valid))
+	if((buffer0[2] <= (brake1.start_valid + marja_eroare)) && (buffer0[2] >= brake1.start_valid)){
 		date_pedale.BrakeSensor1TravelPercentage = 0U;
-	else{
-		if((buffer0[2] >= brake1.end_valid) && (buffer0[2] <= (brake1.end_valid + marja_eroare)))
-			date_pedale.BrakeSensor1TravelPercentage = 100U;
-		else
-			date_pedale.BrakeSensor1TravelPercentage = 100U*(buffer0[2]-brake1.start_valid)/(brake1.end_valid-brake1.start_valid);
 	}
-	if((buffer0[2] > (brake1.end_valid + marja_eroare)) || (buffer0[2] < (brake1.start_valid - marja_eroare)))
+	else{
+		if((buffer0[2] <= brake1.end_valid) && (buffer0[2] >= (brake1.end_valid - marja_eroare))){
+			date_pedale.BrakeSensor1TravelPercentage = 100U;
+		}
+		else{
+			date_pedale.BrakeSensor1TravelPercentage = 100U*(brake1.start_valid-buffer0[2])/(brake1.start_valid-brake1.end_valid);
+		}
+	}
+	if((buffer0[2] < (brake1.end_valid - marja_eroare)) || (buffer0[2] > (brake1.start_valid + marja_eroare))){
 		erori_pedale.Brake_Sensor1_OutOfRangeOutput = 1;
-	if(buffer0[2] < marja_limite)
+		date_pedale.BrakeSensor1TravelPercentage = 0U;
+	}
+	if(buffer0[2] < marja_limite){
 		erori_pedale.Brake_Sensor1_ShortToGnd = 1;
-	if(buffer0[2] > (MAX_VOLTAGE - marja_limite))
+		date_pedale.BrakeSensor1TravelPercentage = 0U;
+	}
+	if(buffer0[2] > (MAX_VOLTAGE - marja_limite)){
 		erori_pedale.Brake_Sensor1_ShortToVcc = 1;
+		date_pedale.BrakeSensor1TravelPercentage = 0U;
+	}
 
 	// Senzor 2 Frana
 	date_pedale.BrakeSensor2Voltage = buffer0[3];
-	if((buffer0[3] <= (brake2.start_valid + marja_eroare)) && (buffer0[3] >= brake2.start_valid))
+	if((buffer0[3] <= (brake2.start_valid + marja_eroare)) && (buffer0[3] >= brake2.start_valid)){
 		date_pedale.BrakeSensor2TravelPercentage = 0U;
-	else{
-		if((buffer0[3] <= brake2.end_valid) && (buffer0[3] >= (brake2.end_valid - marja_eroare)))
-			date_pedale.BrakeSensor2TravelPercentage = 100U;
-		else
-			date_pedale.BrakeSensor2TravelPercentage = 100U*(brake2.start_valid-buffer0[3])/(brake2.start_valid-brake2.end_valid);
 	}
-	if((buffer0[3] < (brake2.end_valid - marja_eroare)) || (buffer0[3] > (brake2.start_valid + marja_eroare)))
+	else{
+		if((buffer0[3] <= brake2.end_valid) && (buffer0[3] >= (brake2.end_valid - marja_eroare))){
+			date_pedale.BrakeSensor2TravelPercentage = 100U;
+		}
+		else{
+			date_pedale.BrakeSensor2TravelPercentage = 100U*(brake2.start_valid-buffer0[3])/(brake2.start_valid-brake2.end_valid);
+		}
+	}
+	if((buffer0[3] < (brake2.end_valid - marja_eroare)) || (buffer0[3] > (brake2.start_valid + marja_eroare))){
 		erori_pedale.Brake_Sensor2_OutOfRangeOutput = 1;
-	if(buffer0[3] < marja_limite)
+		date_pedale.BrakeSensor2TravelPercentage = 0U;
+	}
+	if(buffer0[3] < marja_limite){
 		erori_pedale.Brake_Sensor2_ShortToGnd = 1;
-	if(buffer0[3] > (MAX_VOLTAGE - marja_limite))
+		date_pedale.BrakeSensor2TravelPercentage = 0U;
+	}
+	if(buffer0[3] > (MAX_VOLTAGE - marja_limite)){
 		erori_pedale.Brake_Sensor2_ShortToVcc = 1;
+		date_pedale.BrakeSensor2TravelPercentage = 0U;
+	}
 
 	if((date_pedale.BrakeSensor1TravelPercentage - date_pedale.BrakeSensor2TravelPercentage >= marja_implausibility) || (date_pedale.BrakeSensor2TravelPercentage - date_pedale.BrakeSensor1TravelPercentage >= marja_implausibility))
 		erori_pedale.Brake_Implausibility = 1;
