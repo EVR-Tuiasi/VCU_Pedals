@@ -37,10 +37,10 @@ static Adc_ValueGroupType buffer0[4];
 static Adc_ValueGroupType buffer1[1];
 static PedalsData_t date_pedale = {0};
 volatile PedalsErrors_t erori_pedale = {0};
-static SensorLimits acc1 = {10813+200, 13434-200};
-static SensorLimits acc2 = {3768-100, 2129+100};
-static SensorLimits brake1 = {12287, 8847+200};
-static SensorLimits brake2 = {5603-200, 2851+200};
+static SensorLimits acc1 = {11173+200, 13925-200};
+static SensorLimits acc2 = {3309-100, 1802+100};
+static SensorLimits brake1 = {12811, 10616+200};
+static SensorLimits brake2 = {5111-200, 3931+200};
 static uint16_t marja_eroare = 950;
 static uint16_t marja_limite = 490; //1310 - 0.4V pt adc de 14 biti; 490 - 0.15V pt adc de 14 biti
 static uint16_t marja_implausibility = 25;
@@ -234,12 +234,16 @@ void Pedals_Update(void){
 	}
 
 	// Senzor 2 Acceleratie
+	if(buffer0[1] >= 13500U && buffer0[1] <= (MAX_VOLTAGE - marja_limite)){
+		buffer0[1] = acc2.end_valid;
+	}
 	date_pedale.AcceleratorSensor2Voltage = buffer0[1];
+
 	if((buffer0[1] <= (acc2.start_valid + marja_eroare)) && (buffer0[1] >= acc2.start_valid)){
 		date_pedale.AcceleratorSensor2TravelPercentage = 0U;
 	}
 	else{
-		if((buffer0[1] <= acc2.end_valid) && (buffer0[1] >= (acc2.end_valid - marja_eroare))){
+		if(((buffer0[1] <= acc2.end_valid) && (buffer0[1] >= (acc2.end_valid - marja_eroare)))){
 			date_pedale.AcceleratorSensor2TravelPercentage = 100U;
 		}
 		else{
