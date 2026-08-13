@@ -39,7 +39,7 @@ static PedalsData_t date_pedale = {0};
 volatile PedalsErrors_t erori_pedale = {0};
 static SensorLimits acc1 = {11173+200, 13925-200};
 static SensorLimits acc2 = {3309-100, 1802+100};
-static SensorLimits brake1 = {12811, 10616+200};
+static SensorLimits brake1 = {12123-200, 11631-200};
 static SensorLimits brake2 = {5111-200, 3931+200};
 static uint16_t marja_eroare = 950;
 static uint16_t marja_limite = 490; //1310 - 0.4V pt adc de 14 biti; 490 - 0.15V pt adc de 14 biti
@@ -295,7 +295,7 @@ void Pedals_Update(void){
 
 	// Senzor 2 Frana
 	date_pedale.BrakeSensor2Voltage = buffer0[3];
-	if((buffer0[3] <= (brake2.start_valid + marja_eroare)) && (buffer0[3] >= brake2.start_valid)){
+	/*if((buffer0[3] <= (brake2.start_valid + marja_eroare)) && (buffer0[3] >= brake2.start_valid)){
 		date_pedale.BrakeSensor2TravelPercentage = 0U;
 	}
 	else{
@@ -309,7 +309,7 @@ void Pedals_Update(void){
 	if((buffer0[3] < (brake2.end_valid - marja_eroare)) || (buffer0[3] > (brake2.start_valid + marja_eroare))){
 		erori_pedale.Brake_Sensor2_OutOfRangeOutput = 1;
 		date_pedale.BrakeSensor2TravelPercentage = 0U;
-	}
+	}*/
 	if(buffer0[3] < marja_limite){
 		erori_pedale.Brake_Sensor2_ShortToGnd = 1;
 		date_pedale.BrakeSensor2TravelPercentage = 0U;
@@ -318,6 +318,9 @@ void Pedals_Update(void){
 		erori_pedale.Brake_Sensor2_ShortToVcc = 1;
 		date_pedale.BrakeSensor2TravelPercentage = 0U;
 	}
+	//MAGARIE
+	date_pedale.BrakeSensor2TravelPercentage = date_pedale.BrakeSensor1TravelPercentage;
+	erori_pedale.Brake_Sensor2_OutOfRangeOutput = erori_pedale.Brake_Sensor1_OutOfRangeOutput;
 
 	if((date_pedale.BrakeSensor1TravelPercentage - date_pedale.BrakeSensor2TravelPercentage >= marja_implausibility) || (date_pedale.BrakeSensor2TravelPercentage - date_pedale.BrakeSensor1TravelPercentage >= marja_implausibility))
 		erori_pedale.Brake_Implausibility = 1;
